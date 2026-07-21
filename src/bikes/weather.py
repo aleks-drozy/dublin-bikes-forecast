@@ -17,6 +17,11 @@ _URL = ("https://archive-api.open-meteo.com/v1/archive"
         "&hourly=temperature_2m,precipitation,wind_speed_10m"
         "&timezone=UTC&start_date={start}&end_date={end}")
 
+_FORECAST_URL = ("https://api.open-meteo.com/v1/forecast"
+                 "?latitude=53.35&longitude=-6.26"
+                 "&hourly=temperature_2m,precipitation,wind_speed_10m"
+                 "&timezone=UTC&forecast_days=3")
+
 
 def _fetch_json(url: str, timeout: float = 60.0) -> dict:
     with urllib.request.urlopen(url, timeout=timeout) as resp:
@@ -25,6 +30,18 @@ def _fetch_json(url: str, timeout: float = 60.0) -> dict:
 
 def fetch_archive(start: date, end: date, fetcher=_fetch_json) -> pd.DataFrame:
     payload = fetcher(_URL.format(start=start.isoformat(), end=end.isoformat()))
+    hourly = payload["hourly"]
+    return pd.DataFrame({
+        "ts": pd.to_datetime(hourly["time"]).tz_localize("UTC"),
+        "temp": hourly["temperature_2m"],
+        "precip": hourly["precipitation"],
+        "wind": hourly["wind_speed_10m"],
+    })
+
+
+def fetch_forecast(fetcher=_fetch_json) -> pd.DataFrame:
+    """Live counterpart of the archive proxy: forecast values at issuance."""
+    payload = fetcher(_FORECAST_URL)
     hourly = payload["hourly"]
     return pd.DataFrame({
         "ts": pd.to_datetime(hourly["time"]).tz_localize("UTC"),
