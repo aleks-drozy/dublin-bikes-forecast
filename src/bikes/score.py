@@ -7,8 +7,10 @@ from pathlib import Path
 
 import pandas as pd
 
-from bikes.backtest import brier, bss
+from bikes.backtest import bootstrap_bss_ci, brier, bss, reliability_bins
 from scoring.eligibility import TOLERANCE, eligible_observation
+
+REQUIRED_DAYS = 28  # pre-registered live gate (P1 spec)
 
 KEY = ["target_ts_utc", "window", "horizon", "station_id", "event"]
 
@@ -101,6 +103,8 @@ def write_summary(ledger_dir: Path) -> None:
             "brier_pers": brier(g["p_pers"].values, y),
             "bss_vs_clim": bss(g["p_model"].values, y, g["p_clim"].values),
             "bss_vs_pers": bss(g["p_model"].values, y, g["p_pers"].values),
+            "reliability": reliability_bins(g["p_model"].values, y)
+            .to_dict(orient="records"),
         })
     summary = {
         "groups": groups,
@@ -111,3 +115,52 @@ def write_summary(ledger_dir: Path) -> None:
     }
     (ledger_dir / "summary.json").write_text(json.dumps(summary, indent=1),
                                              encoding="utf-8")
+
+
+def _scored_rows(ledger_dir: Path) -> pd.DataFrame:
+    outcome_files = list((ledger_dir / "outcomes").glob("*.csv"))
+    if not outcome_files:
+        return pd.DataFrame()
+    forecasts = pd.concat([pd.read_csv(p, dtype={"station_id": str})
+                           for p in (ledger_dir / "forecasts").glob("*.csv")],
+                          ignore_index=True)
+    outcomes = pd.concat([pd.read_csv(p, dtype={"station_id": str})
+                          for p in outcome_files], ignore_index=True)
+    merged = forecasts.merge(outcomes, on=KEY, how="inner")
+    return merged[merged["status"] == "SCORED"].copy()
+
+
+def evaluate_gate(ledger_dir: Path) -> None:
+    """Pre-registered live gate (P1 spec) — this code ships before outcomes.
+
+    PENDING until 28 scored days; then, per event at the LONG horizon:
+    BSS > 0 vs BOTH baselines with day-clustered bootstrap 95% CI excluding 0.
+    """
+    scored = _scored_rows(ledger_dir)
+    days = int(scored["target_ts_utc"].str[:10].nunique()) if not scored.empty else 0
+    gate: dict = {"scored_days": days, "required_days": REQUIRED_DAYS,
+                  "evaluated_from": "long horizon, day-clustered bootstrap, "
+                                    "seed 20260721"}
+    if days < REQUIRED_DAYS:
+        gate["status"] = "PENDING"
+    else:
+        detail = {}
+        passed = True
+        long_rows = scored[scored["horizon"] == "long"]
+        for event, g in long_rows.groupby("event"):
+            y = g["y"].astype(float).values
+            dates = g["target_ts_utc"].str[:10]
+            cis = {
+                "bss_vs_clim_ci": list(bootstrap_bss_ci(
+                    g["p_model"].values, y, g["p_clim"].values, dates,
+                    seed=20260721)),
+                "bss_vs_pers_ci": list(bootstrap_bss_ci(
+                    g["p_model"].values, y, g["p_pers"].values, dates,
+                    seed=20260721)),
+            }
+            detail[event] = cis
+            passed &= cis["bss_vs_clim_ci"][0] > 0 and cis["bss_vs_pers_ci"][0] > 0
+        gate["status"] = "PASS" if passed else "NOT_PROVEN"
+        gate["detail"] = detail
+    (ledger_dir / "gate.json").write_text(json.dumps(gate, indent=1),
+                                          encoding="utf-8")

@@ -166,3 +166,30 @@ def run_issuance(model: FrozenModel, raw_dir: Path, capacity: pd.Series,
 
 def self_features(model: FrozenModel) -> list[str]:
     return [c for c in model.manifest["features"] if c != "station_id"]
+
+
+def write_latest_json(ledger_dir: Path, stations: pd.DataFrame,
+                      now: datetime) -> None:
+    """Commuter feed: newest still-relevant forecast per station/window/event."""
+    frames = []
+    for d in (now.date(), now.date() + timedelta(days=1)):
+        path = ledger_dir / "forecasts" / f"{d.isoformat()}.csv"
+        if path.exists():
+            frames.append(pd.read_csv(path, dtype={"station_id": str}))
+    if not frames:
+        return
+    fc = pd.concat(frames, ignore_index=True)
+    fc = fc[pd.to_datetime(fc["target_ts_utc"]) > now]
+    fc = (fc.sort_values("issued_at_utc")
+          .groupby(["station_id", "window", "event"], as_index=False).last())
+    names = stations.set_index(stations["station_id"].astype(str))["name"]
+    out = [{
+        "station_id": r["station_id"],
+        "name": names.get(r["station_id"], r["station_id"]),
+        "window": r["window"], "horizon": r["horizon"], "event": r["event"],
+        "target_ts_utc": r["target_ts_utc"],
+        "issued_at_utc": r["issued_at_utc"], "p": float(r["p_model"]),
+    } for _, r in fc.iterrows()]
+    (ledger_dir / "latest.json").write_text(json.dumps({
+        "generated_at_utc": now.isoformat(), "forecasts": out}, indent=0),
+        encoding="utf-8")

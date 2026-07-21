@@ -14,7 +14,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from bikes.forecast import FrozenModel, run_issuance  # noqa: E402
+from bikes.forecast import FrozenModel, run_issuance, write_latest_json  # noqa: E402
 from bikes.weather import fetch_forecast  # noqa: E402
 
 
@@ -26,8 +26,10 @@ def main() -> None:
     model = FrozenModel.load(ROOT / "models" / "v1")
     stations = pd.read_parquet(ROOT / "data" / "stations" / "stations.parquet")
     capacity = stations.set_index("station_id")["capacity"].astype(float)
-    run_issuance(model, ROOT / "data" / "raw", capacity, fetch_forecast,
-                 ROOT / "ledger", now, force_sets=force_sets)
+    added = run_issuance(model, ROOT / "data" / "raw", capacity, fetch_forecast,
+                         ROOT / "ledger", now, force_sets=force_sets)
+    if added:
+        write_latest_json(ROOT / "ledger", stations, now)
 
 
 if __name__ == "__main__":

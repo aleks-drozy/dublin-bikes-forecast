@@ -8,13 +8,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from bikes.score import score_ledger, write_summary  # noqa: E402
+from bikes.score import evaluate_gate, score_ledger, write_summary  # noqa: E402
 
 
 def main() -> None:
     now = datetime.now(timezone.utc)
     counts = score_ledger(ROOT / "ledger", ROOT / "data" / "raw", now)
     write_summary(ROOT / "ledger")
+    evaluate_gate(ROOT / "ledger")
     print(f"scored={counts['scored']} gap={counts['gap']} "
           f"excluded={counts['excluded']}")
 
