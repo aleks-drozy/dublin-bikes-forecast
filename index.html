@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dublin Bikes Forecast — a self-scoring model</title>
+<meta name="description" content="Live probability forecasts for Dublin Bikes availability at commute times, committed before the fact and publicly scored against pre-registered baselines.">
+<style>
+:root{
+  --bg:oklch(98% 0.005 250);--panel:oklch(96% 0.008 250);--ink:oklch(22% 0.02 250);
+  --muted:oklch(45% 0.02 250);--line:oklch(88% 0.01 250);
+  --accent:oklch(55% 0.15 250);--good:oklch(60% 0.14 150);--warn:oklch(70% 0.13 75);
+  --mono:ui-monospace,'Cascadia Code',Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:oklch(18% 0.015 250);--panel:oklch(23% 0.02 250);--ink:oklch(90% 0.01 250);
+  --muted:oklch(65% 0.02 250);--line:oklch(32% 0.02 250);
+  --accent:oklch(70% 0.12 250);--good:oklch(70% 0.13 150);--warn:oklch(75% 0.12 75);
+}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.55 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased}
+main{max-width:44rem;margin:0 auto;padding:1.25rem 1.25rem 4rem}
+h1{font-size:1.6rem;line-height:1.2;margin:1.2rem 0 .3rem;letter-spacing:-.02em}
+h2{font-size:1.05rem;margin:2.4rem 0 .7rem;text-transform:uppercase;
+  letter-spacing:.08em;color:var(--muted);font-weight:600}
+p{margin:.5rem 0}
+.sub{color:var(--muted)}
+a{color:var(--accent)}
+.banner{border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;
+  margin-top:1.4rem;background:var(--panel)}
+.banner .status{font:700 1.15rem var(--mono)}
+.banner.pending .status{color:var(--accent)}
+.banner.pass .status{color:var(--good)}
+.banner.not_proven .status{color:var(--warn)}
+.banner small{display:block;margin-top:.35rem;color:var(--muted)}
+input[type=search]{width:100%;padding:.65rem .8rem;border:1px solid var(--line);
+  border-radius:10px;background:var(--panel);color:var(--ink);font:inherit}
+#station-result{margin-top:.9rem}
+.card{border:1px solid var(--line);border-radius:12px;padding:.9rem 1.1rem;
+  background:var(--panel);margin:.6rem 0}
+.card b{font-variant-numeric:tabular-nums}
+.probs{display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:.4rem}
+.prob .val{font:700 1.5rem var(--mono)}
+.prob .lbl{font-size:.8rem;color:var(--muted)}
+table{border-collapse:collapse;width:100%;font-size:.86rem;
+  font-variant-numeric:tabular-nums}
+th,td{text-align:right;padding:.45rem .5rem;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--muted);font-weight:600}
+.pos{color:var(--good);font-weight:600}.neg{color:var(--warn);font-weight:600}
+.scroll{overflow-x:auto}
+.counts{display:flex;gap:1rem;flex-wrap:wrap;margin:.8rem 0}
+.counts div{background:var(--panel);border:1px solid var(--line);
+  border-radius:10px;padding:.5rem .9rem;font-size:.85rem}
+.counts b{font-family:var(--mono)}
+svg text{fill:var(--muted);font:11px var(--mono)}
+footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);
+  font-size:.85rem;color:var(--muted)}
+.note{font-size:.85rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<h1>Dublin Bikes Forecast</h1>
+<p class="sub">Probability forecasts for bike and dock availability at Dublin's
+commute windows (08:30 &amp; 17:30) — <strong>committed to a public git ledger
+before the fact</strong>, then scored nightly against reality. Live since
+21&nbsp;July&nbsp;2026.</p>
+
+<div id="gate" class="banner pending">
+  <span class="status">LOADING…</span>
+  <small>The verdict gate is pre-registered: after 28 scored days, the model
+  must beat <em>both</em> baselines (station climatology and persistence) at
+  the overnight horizon, with day-clustered bootstrap 95% CIs excluding zero
+  — or this banner says NOT PROVEN.
+  <a href="docs/superpowers/specs/2026-07-21-dublin-bikes-forecast-design.md">Read the spec</a>.</small>
+</div>
+
+<h2>Your station</h2>
+<input id="q" type="search" list="stations" placeholder="Search a station — e.g. Smithfield North"
+  autocomplete="off">
+<datalist id="stations"></datalist>
+<div id="station-result"><p class="note" id="latest-note">Loading forecasts…</p></div>
+
+<h2>Evidence</h2>
+<div id="evidence"><p class="note">Loading…</p></div>
+
+<h2>Calibration</h2>
+<p class="note">Each dot: forecasts in one probability bin vs how often the
+event actually happened. Honest forecasts sit on the diagonal.</p>
+<div id="reliability" class="scroll"></div>
+
+<footer>
+<p><strong>How to verify us:</strong> every forecast row in
+<a href="https://github.com/aleks-drozy/dublin-bikes-forecast/tree/main/ledger/forecasts">ledger/forecasts</a>
+was committed before its target time — check the
+<a href="https://github.com/aleks-drozy/dublin-bikes-forecast/commits/main">commit timestamps</a>
+yourself. Outcomes, gaps, and excluded stations are all counted in
+<a href="ledger/summary.json">summary.json</a>. Model:
+<a href="models/v1/manifest.json">frozen v1</a> (trained on the
+<a href="https://data.smartdublin.ie/dataset/dublinbikes-api">Smart Dublin archive</a>,
+2024-05 → 2026-06). Weather: Open-Meteo. Data: dublinbikes GBFS (CC-BY, JCDecaux/DCC).
+<a href="https://github.com/aleks-drozy/dublin-bikes-forecast">Source &amp; methodology</a>.</p>
+</footer>
+</main>
+
+<script>
+"use strict";
+const $=s=>document.querySelector(s);
+const pct=p=>Math.round(p*100)+"%";
+const f3=x=>(x>=0?"+":"")+x.toFixed(3);
+
+async function j(url){const r=await fetch(url,{cache:"no-store"});
+  if(!r.ok)throw new Error(url);return r.json();}
+
+// ---- verdict banner ----
+j("ledger/gate.json").then(g=>{
+  const el=$("#gate"),s=$("#gate .status");
+  if(g.status==="PENDING"){
+    s.textContent=`PENDING — day ${g.scored_days} of ${g.required_days}`;
+  }else{
+    el.className="banner "+g.status.toLowerCase();
+    s.textContent=g.status.replace("_"," ");
+  }
+}).catch(()=>{$("#gate .status").textContent="PENDING — first outcomes land after tonight's scoring";});
+
+// ---- commuter lookup ----
+let LATEST=null;
+j("ledger/latest.json").then(d=>{
+  LATEST=d;
+  const names=[...new Set(d.forecasts.map(f=>f.name))].sort();
+  $("#stations").innerHTML=names.map(n=>`<option value="${n}">`).join("");
+  $("#latest-note").textContent=
+    `Forecasts for ${names.length} stations, issued ${new Date(d.generated_at_utc).toLocaleString()}. Type your station above.`;
+}).catch(()=>{$("#latest-note").textContent="No live forecast feed yet — the next issuance run publishes it.";});
+
+$("#q").addEventListener("input",e=>{
+  if(!LATEST)return;
+  const rows=LATEST.forecasts.filter(f=>f.name.toLowerCase()===e.target.value.toLowerCase());
+  const box=$("#station-result");
+  if(!rows.length){return;}
+  const windows={};
+  rows.forEach(f=>{(windows[f.target_ts_utc]??={}).name=f.name;
+    windows[f.target_ts_utc][f.event]=f;});
+  box.innerHTML=Object.entries(windows).sort().map(([t,w])=>{
+    const dt=new Date(t);
+    const when=dt.toLocaleString([],{weekday:"short",hour:"2-digit",minute:"2-digit"});
+    const bike=w.bike,dock=w.dock;
+    return `<div class="card"><b>${w.name}</b> — ${when}
+      <div class="probs">
+      ${bike?`<div class="prob"><div class="val">${pct(bike.p)}</div><div class="lbl">at least one bike</div></div>`:""}
+      ${dock?`<div class="prob"><div class="val">${pct(dock.p)}</div><div class="lbl">at least one free dock</div></div>`:""}
+      </div>
+      <div class="note">forecast made ${new Date((bike||dock).issued_at_utc).toLocaleString()} (${(bike||dock).horizon} horizon)</div>
+      </div>`;
+  }).join("");
+});
+
+// ---- evidence + calibration ----
+j("ledger/summary.json").then(s=>{
+  const rows=s.groups.map(g=>{
+    const c1=g.bss_vs_clim,c2=g.bss_vs_pers;
+    return `<tr><td>${g.event} / ${g.horizon}</td><td>${g.n}</td>
+      <td>${g.brier_model.toFixed(4)}</td><td>${g.brier_clim.toFixed(4)}</td>
+      <td>${g.brier_pers.toFixed(4)}</td>
+      <td class="${c1>0?"pos":"neg"}">${f3(c1)}</td>
+      <td class="${c2>0?"pos":"neg"}">${f3(c2)}</td></tr>`;}).join("");
+  const sc=s.status_counts;
+  $("#evidence").innerHTML=
+    `<div class="counts">
+       <div>scored <b>${sc.SCORED||0}</b></div>
+       <div>unscoreable gaps <b>${sc.UNSCOREABLE_GAP||0}</b></div>
+       <div>excluded stations <b>${sc.EXCLUDED_STATION||0}</b></div>
+       <div>scored days <b>${s.scored_days}</b></div>
+     </div>
+     <div class="scroll"><table>
+     <tr><th>set</th><th>n</th><th>Brier model</th><th>climatology</th>
+     <th>persistence</th><th>BSS vs clim</th><th>BSS vs pers</th></tr>
+     ${rows}</table></div>
+     <p class="note">BSS &gt; 0 = better than the baseline. Gaps and exclusions
+     are published, never dropped silently.</p>`;
+  drawReliability(s.groups);
+}).catch(()=>{$("#evidence").innerHTML=
+  '<p class="note">No scored outcomes yet — scoring runs nightly at 23:45 UTC. '+
+  'The first evidence appears after the first full forecast day.</p>';});
+
+function drawReliability(groups){
+  const W=210,H=210,pad=28;
+  const svgs=groups.map(g=>{
+    const dots=g.reliability.map(b=>{
+      const x=pad+b.p_mean*(W-2*pad),y=H-pad-b.y_rate*(H-2*pad);
+      return `<circle cx="${x}" cy="${y}" r="3.4" fill="var(--accent)"><title>${b.count} forecasts near ${pct(b.p_mean)}: happened ${pct(b.y_rate)}</title></circle>`;
+    }).join("");
+    return `<svg width="${W}" height="${H}" role="img" aria-label="reliability ${g.event} ${g.horizon}">
+      <line x1="${pad}" y1="${H-pad}" x2="${W-pad}" y2="${pad}" stroke="var(--line)" stroke-dasharray="4 4"/>
+      <rect x="${pad}" y="${pad}" width="${W-2*pad}" height="${H-2*pad}" fill="none" stroke="var(--line)"/>
+      ${dots}
+      <text x="${W/2}" y="${H-6}" text-anchor="middle">${g.event} · ${g.horizon}</text>
+    </svg>`;});
+  $("#reliability").innerHTML=`<div style="display:flex;gap:.8rem;flex-wrap:wrap">${svgs.join("")}</div>`;
+}
+</script>
+</body>
+</html>
