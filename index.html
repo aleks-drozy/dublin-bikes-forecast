@@ -3,106 +3,254 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dublin Bikes Forecast — a self-scoring model</title>
-<meta name="description" content="Live probability forecasts for Dublin Bikes availability at commute times, committed before the fact and publicly scored against pre-registered baselines.">
+<title>Dublin Bikes Forecast — a self-scoring public forecast</title>
+<meta name="description" content="Probability forecasts for Dublin Bikes availability at commute times, committed to a public git ledger before the fact and scored nightly against pre-registered baselines.">
+<meta name="theme-color" content="#f4f1ea">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f4f1ea'/%3E%3Crect x='5' y='14' width='4' height='13' fill='%232b4bc0'/%3E%3Crect x='11' y='9' width='4' height='18' fill='%232b4bc0'/%3E%3Crect x='17' y='17' width='4' height='10' fill='%232b4bc0'/%3E%3Crect x='23' y='5' width='4' height='22' fill='%232b4bc0'/%3E%3C/svg%3E">
 <style>
 :root{
-  --bg:oklch(98% 0.005 250);--panel:oklch(96% 0.008 250);--ink:oklch(22% 0.02 250);
-  --muted:oklch(45% 0.02 250);--line:oklch(88% 0.01 250);
-  --accent:oklch(55% 0.15 250);--good:oklch(60% 0.14 150);--warn:oklch(70% 0.13 75);
-  --mono:ui-monospace,'Cascadia Code',Consolas,monospace;
+  --paper:oklch(96.5% 0.012 85);
+  --paper-2:oklch(94% 0.014 85);
+  --ink:oklch(24% 0.015 60);
+  --muted:oklch(46% 0.02 70);
+  --rule:oklch(84% 0.016 82);
+  --rule-strong:oklch(30% 0.02 60);
+  --cobalt:oklch(45% 0.17 262);
+  --cobalt-soft:oklch(45% 0.17 262 / .09);
+  --pass:oklch(48% 0.12 155);
+  --warn:oklch(55% 0.12 70);
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Charter,Georgia,serif;
+  --mono:ui-monospace,'Cascadia Code',Consolas,'Liberation Mono',monospace;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 }
 @media (prefers-color-scheme:dark){:root{
-  --bg:oklch(18% 0.015 250);--panel:oklch(23% 0.02 250);--ink:oklch(90% 0.01 250);
-  --muted:oklch(65% 0.02 250);--line:oklch(32% 0.02 250);
-  --accent:oklch(70% 0.12 250);--good:oklch(70% 0.13 150);--warn:oklch(75% 0.12 75);
+  --paper:oklch(20% 0.012 60);
+  --paper-2:oklch(24% 0.014 60);
+  --ink:oklch(90% 0.012 85);
+  --muted:oklch(66% 0.018 78);
+  --rule:oklch(32% 0.015 65);
+  --rule-strong:oklch(80% 0.015 80);
+  --cobalt:oklch(72% 0.12 262);
+  --cobalt-soft:oklch(72% 0.12 262 / .13);
+  --pass:oklch(70% 0.11 155);
+  --warn:oklch(74% 0.11 75);
 }}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);
-  font:16px/1.55 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-  -webkit-font-smoothing:antialiased}
-main{max-width:44rem;margin:0 auto;padding:1.25rem 1.25rem 4rem}
-h1{font-size:1.6rem;line-height:1.2;margin:1.2rem 0 .3rem;letter-spacing:-.02em}
-h2{font-size:1.05rem;margin:2.4rem 0 .7rem;text-transform:uppercase;
-  letter-spacing:.08em;color:var(--muted);font-weight:600}
-p{margin:.5rem 0}
-.sub{color:var(--muted)}
-a{color:var(--accent)}
-.banner{border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;
-  margin-top:1.4rem;background:var(--panel)}
-.banner .status{font:700 1.15rem var(--mono)}
-.banner.pending .status{color:var(--accent)}
-.banner.pass .status{color:var(--good)}
-.banner.not_proven .status{color:var(--warn)}
-.banner small{display:block;margin-top:.35rem;color:var(--muted)}
-input[type=search]{width:100%;padding:.65rem .8rem;border:1px solid var(--line);
-  border-radius:10px;background:var(--panel);color:var(--ink);font:inherit}
-#station-result{margin-top:.9rem}
-.card{border:1px solid var(--line);border-radius:12px;padding:.9rem 1.1rem;
-  background:var(--panel);margin:.6rem 0}
-.card b{font-variant-numeric:tabular-nums}
-.probs{display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:.4rem}
-.prob .val{font:700 1.5rem var(--mono)}
-.prob .lbl{font-size:.8rem;color:var(--muted)}
-table{border-collapse:collapse;width:100%;font-size:.86rem;
-  font-variant-numeric:tabular-nums}
-th,td{text-align:right;padding:.45rem .5rem;border-bottom:1px solid var(--line)}
-th:first-child,td:first-child{text-align:left}
-th{color:var(--muted);font-weight:600}
-.pos{color:var(--good);font-weight:600}.neg{color:var(--warn);font-weight:600}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:17px/1.6 var(--serif);-webkit-font-smoothing:antialiased;
+  font-variant-numeric:oldstyle-nums}
+::selection{background:var(--cobalt);color:var(--paper)}
+a{color:var(--cobalt);text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px;border-radius:2px}
+main{max-width:52rem;margin:0 auto;padding:0 clamp(1.1rem,4vw,2rem) 5rem}
+.prose{max-width:66ch}
+
+/* masthead */
+header{padding-top:clamp(1.6rem,5vw,3rem)}
+.overline{font:600 .72rem/1 var(--mono);letter-spacing:.22em;
+  text-transform:uppercase;color:var(--cobalt)}
+h1{font:400 clamp(2.4rem,7vw,4.2rem)/1.04 var(--serif);
+  letter-spacing:-.015em;margin:.35rem 0 .9rem}
+.rules{border-top:3px solid var(--rule-strong);border-bottom:1px solid var(--rule-strong);
+  height:6px;margin:.2rem 0 .9rem}
+.masthead-meta{display:flex;gap:.6rem 1.6rem;flex-wrap:wrap;
+  font:.78rem/1.5 var(--mono);color:var(--muted)}
+.masthead-meta a{color:inherit}
+
+h2{font:600 .78rem/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin:clamp(2.6rem,7vw,4rem) 0 1rem;
+  display:flex;align-items:center;gap:.8rem}
+h2::after{content:"";flex:1;border-top:1px solid var(--rule)}
+h2 .no{color:var(--cobalt)}
+
+/* verdict notice */
+#gate{border:1.5px solid var(--rule-strong);padding:1.1rem 1.25rem 1.25rem;
+  margin-top:clamp(1.8rem,5vw,2.6rem);background:var(--paper)}
+#gate .status{font:700 clamp(1.05rem,3vw,1.35rem)/1.3 var(--mono);
+  letter-spacing:.02em}
+#gate.pending .status{color:var(--cobalt)}
+#gate.pass .status{color:var(--pass)}
+#gate.not_proven .status{color:var(--warn)}
+.ticks{display:flex;gap:4px;margin:.85rem 0 .9rem;flex-wrap:wrap}
+.ticks span{width:14px;height:20px;border:1px solid var(--rule-strong);
+  background:transparent}
+.ticks span.on{background:var(--cobalt);border-color:var(--cobalt)}
+#gate.pass .ticks span.on{background:var(--pass);border-color:var(--pass)}
+#gate.not_proven .ticks span.on{background:var(--warn);border-color:var(--warn)}
+@media (prefers-reduced-motion:no-preference){
+  .ticks span.on{animation:fill .25s cubic-bezier(.16,1,.3,1) both;
+    animation-delay:calc(var(--i)*35ms)}
+  @keyframes fill{from{opacity:.2}to{opacity:1}}
+}
+#gate p{margin:.3rem 0 0;font-size:.92rem;color:var(--muted);max-width:62ch}
+
+/* station lookup */
+.lookup label{display:block;font:600 .8rem var(--mono);letter-spacing:.06em;
+  color:var(--muted);margin-bottom:.45rem}
+input[type=search]{width:100%;padding:.7rem .9rem;font:1rem var(--sans);
+  color:var(--ink);background:var(--paper-2);border:1px solid var(--rule);
+  border-radius:0;transition:border-color .18s ease-out}
+input[type=search]:focus{border-color:var(--cobalt);outline:none}
+.stn{border-bottom:1px solid var(--rule);padding:1rem 0}
+.stn:first-of-type{border-top:1px solid var(--rule);margin-top:1.1rem}
+.stn .name{font:700 1.15rem var(--serif)}
+.stn .when{font:.78rem var(--mono);color:var(--muted);margin-left:.6rem}
+.stn .row{display:flex;gap:clamp(1.2rem,6vw,3rem);margin-top:.55rem;
+  align-items:baseline;flex-wrap:wrap}
+.big{font:700 clamp(1.7rem,5vw,2.3rem)/1 var(--mono);
+  font-variant-numeric:tabular-nums;color:var(--cobalt)}
+.big+.lbl{font:.78rem var(--sans);color:var(--muted)}
+.pair{display:flex;align-items:baseline;gap:.55rem}
+.issued{font:.74rem var(--mono);color:var(--muted);margin-top:.5rem}
+
+/* how it works */
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:0;border-top:1px solid var(--rule)}
+.how div{padding:.9rem .2rem .2rem;border-bottom:1px solid var(--rule)}
+.how b{display:block;font:700 .8rem var(--mono);letter-spacing:.08em;
+  margin-bottom:.25rem}
+.how b i{font-style:normal;color:var(--cobalt);margin-right:.5rem}
+.how p{margin:0;font-size:.88rem;color:var(--muted);line-height:1.5;
+  padding-right:1rem}
+
+/* evidence */
+.countline{font:.85rem var(--mono);color:var(--muted);margin:.2rem 0 1rem;
+  letter-spacing:.02em}
+.countline b{color:var(--ink)}
 .scroll{overflow-x:auto}
-.counts{display:flex;gap:1rem;flex-wrap:wrap;margin:.8rem 0}
-.counts div{background:var(--panel);border:1px solid var(--line);
-  border-radius:10px;padding:.5rem .9rem;font-size:.85rem}
-.counts b{font-family:var(--mono)}
-svg text{fill:var(--muted);font:11px var(--mono)}
-footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);
-  font-size:.85rem;color:var(--muted)}
-.note{font-size:.85rem;color:var(--muted)}
+table{border-collapse:collapse;width:100%;font:.86rem var(--mono);
+  font-variant-numeric:tabular-nums}
+caption{text-align:left;font:.78rem var(--mono);color:var(--muted);
+  padding-bottom:.5rem}
+th,td{text-align:right;padding:.5rem .55rem;border-bottom:1px solid var(--rule);
+  white-space:nowrap}
+th:first-child,td:first-child{text-align:left;padding-left:0}
+td:last-child,th:last-child{padding-right:0}
+thead th{font-weight:600;color:var(--muted);border-bottom:2px solid var(--rule-strong)}
+.pos{color:var(--pass);font-weight:700}
+.neg{color:var(--warn);font-weight:700}
+
+/* calibration */
+.plots{display:flex;gap:1.2rem;flex-wrap:wrap}
+.plots figure{margin:0}
+.plots figcaption{font:.74rem var(--mono);color:var(--muted);
+  text-align:center;padding-top:.35rem}
+svg .frame{fill:none;stroke:var(--rule)}
+svg .diag{stroke:var(--rule-strong);stroke-dasharray:3 4;stroke-width:1}
+svg .dot{fill:var(--cobalt)}
+svg .ax{fill:var(--muted);font:10px var(--mono)}
+
+/* verify + footer */
+ol.verify{padding-left:1.2rem;max-width:66ch}
+ol.verify li{margin:.55rem 0;font-size:.95rem}
+ol.verify li::marker{font:700 .85rem var(--mono);color:var(--cobalt)}
+footer{margin-top:clamp(3rem,7vw,4.5rem)}
+.colophon{border-top:3px solid var(--rule-strong);padding-top:.9rem;
+  font:.78rem/1.7 var(--mono);color:var(--muted)}
+.note{font-size:.88rem;color:var(--muted)}
+@media print{
+  body{font-size:12px}
+  .ticks span{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  input,datalist{display:none}
+}
 </style>
 </head>
 <body>
 <main>
-<h1>Dublin Bikes Forecast</h1>
-<p class="sub">Probability forecasts for bike and dock availability at Dublin's
-commute windows (08:30 &amp; 17:30) — <strong>committed to a public git ledger
-before the fact</strong>, then scored nightly against reality. Live since
-21&nbsp;July&nbsp;2026.</p>
+<header>
+  <p class="overline">A self-scoring public forecast · Dublin</p>
+  <h1>Dublin Bikes Forecast</h1>
+  <div class="rules" aria-hidden="true"></div>
+  <div class="masthead-meta">
+    <span>Forecasts for 08:30 &amp; 17:30, Europe/Dublin</span>
+    <span>Live since 21 July 2026</span>
+    <span id="updated">ledger loading…</span>
+    <a href="https://github.com/aleks-drozy/dublin-bikes-forecast">source ↗</a>
+  </div>
+  <p class="prose" style="margin-top:1.3rem">Twice a day, a frozen model
+  publishes the probability that each Dublin Bikes station will have a bike,
+  and a free dock, at the next commute window. Every forecast is committed to
+  a public git ledger <em>before its target time exists</em>, then scored
+  against what actually happened. The track record cannot be edited,
+  selected, or quietly restarted; the git history would show it.</p>
+</header>
 
-<div id="gate" class="banner pending">
-  <span class="status">LOADING…</span>
-  <small>The verdict gate is pre-registered: after 28 scored days, the model
-  must beat <em>both</em> baselines (station climatology and persistence) at
-  the overnight horizon, with day-clustered bootstrap 95% CIs excluding zero
-  — or this banner says NOT PROVEN.
-  <a href="docs/superpowers/specs/2026-07-21-dublin-bikes-forecast-design.md">Read the spec</a>.</small>
-</div>
+<section id="gate" class="pending" aria-live="polite">
+  <div class="status">VERDICT: LOADING…</div>
+  <div class="ticks" id="ticks" role="img" aria-label="scored days progress"></div>
+  <p>Pre-registered gate: after <strong>28 scored days</strong>, the model
+  must beat <em>both</em> baselines — station climatology and persistence —
+  at the overnight horizon, with day-clustered bootstrap 95% confidence
+  intervals excluding zero, for bikes and for docks. Anything less is
+  published here as <strong>NOT&nbsp;PROVEN</strong>, in this same box.
+  <a href="docs/superpowers/specs/2026-07-21-dublin-bikes-forecast-design.md">The
+  gate was committed before any data was collected</a>.</p>
+</section>
 
-<h2>Your station</h2>
-<input id="q" type="search" list="stations" placeholder="Search a station — e.g. Smithfield North"
-  autocomplete="off">
-<datalist id="stations"></datalist>
-<div id="station-result"><p class="note" id="latest-note">Loading forecasts…</p></div>
+<section class="lookup">
+  <h2><span class="no">§1</span> Will there be a bike?</h2>
+  <label for="q">Your station</label>
+  <input id="q" type="search" list="stations"
+    placeholder="Type a station — Smithfield North, Dame Street…"
+    autocomplete="off">
+  <datalist id="stations"></datalist>
+  <div id="station-result"><p class="note" id="latest-note">Loading the live
+  forecast feed…</p></div>
+</section>
 
-<h2>Evidence</h2>
-<div id="evidence"><p class="note">Loading…</p></div>
+<section>
+  <h2><span class="no">§2</span> How it works</h2>
+  <div class="how">
+    <div><b><i>01</i>POLL</b><p>A cron job records every station's state
+      each 10 minutes from the public GBFS feed.</p></div>
+    <div><b><i>02</i>FORECAST</b><p>At 07:00 and 16:00 Dublin time, the
+      frozen model turns current state, trend, calendar and weather into
+      probabilities.</p></div>
+    <div><b><i>03</i>COMMIT</b><p>Forecasts are appended to the ledger and
+      pushed. The git timestamp is the before-the-fact proof.</p></div>
+    <div><b><i>04</i>SCORE</b><p>Nightly, matured forecasts meet reality.
+      Gaps and excluded stations are counted, never hidden.</p></div>
+  </div>
+</section>
 
-<h2>Calibration</h2>
-<p class="note">Each dot: forecasts in one probability bin vs how often the
-event actually happened. Honest forecasts sit on the diagonal.</p>
-<div id="reliability" class="scroll"></div>
+<section>
+  <h2><span class="no">§3</span> Evidence</h2>
+  <div id="evidence"><p class="note">Loading…</p></div>
+</section>
+
+<section>
+  <h2><span class="no">§4</span> Calibration</h2>
+  <p class="note prose">Each dot is a bundle of forecasts at one confidence
+  level, plotted against how often the event actually happened. An honest
+  forecaster's dots sit on the diagonal.</p>
+  <div id="reliability" class="plots"></div>
+</section>
 
 <footer>
-<p><strong>How to verify us:</strong> every forecast row in
-<a href="https://github.com/aleks-drozy/dublin-bikes-forecast/tree/main/ledger/forecasts">ledger/forecasts</a>
-was committed before its target time — check the
-<a href="https://github.com/aleks-drozy/dublin-bikes-forecast/commits/main">commit timestamps</a>
-yourself. Outcomes, gaps, and excluded stations are all counted in
-<a href="ledger/summary.json">summary.json</a>. Model:
-<a href="models/v1/manifest.json">frozen v1</a> (trained on the
-<a href="https://data.smartdublin.ie/dataset/dublinbikes-api">Smart Dublin archive</a>,
-2024-05 → 2026-06). Weather: Open-Meteo. Data: dublinbikes GBFS (CC-BY, JCDecaux/DCC).
-<a href="https://github.com/aleks-drozy/dublin-bikes-forecast">Source &amp; methodology</a>.</p>
+  <h2><span class="no">§5</span> Verify this yourself</h2>
+  <ol class="verify">
+    <li>Open any file in
+      <a href="https://github.com/aleks-drozy/dublin-bikes-forecast/tree/main/ledger/forecasts">ledger/forecasts</a>
+      and note a forecast's target time.</li>
+    <li>Find the commit that introduced it in the
+      <a href="https://github.com/aleks-drozy/dublin-bikes-forecast/commits/main">commit history</a>:
+      it predates the target.</li>
+    <li>Check the outcome in
+      <a href="https://github.com/aleks-drozy/dublin-bikes-forecast/tree/main/ledger/outcomes">ledger/outcomes</a>
+      and the running totals in <a href="ledger/summary.json">summary.json</a> —
+      this page renders those same files, nothing else.</li>
+    <li>Inspect the <a href="models/v1/manifest.json">frozen model manifest</a>
+      and the <a href="reports/p2/REPORT.md">offline validation report</a>
+      it had to pass before going live.</li>
+  </ol>
+  <div class="colophon">
+    <p>Data: dublinbikes GBFS (JCDecaux / Dublin City Council, CC-BY) ·
+    training history: Smart Dublin open data · weather: Open-Meteo.
+    Built with zero runtime dependencies; this page makes no external
+    requests. Aleksandrs Drozdovs, 2026.</p>
+  </div>
 </footer>
 </main>
 
@@ -111,95 +259,109 @@ yourself. Outcomes, gaps, and excluded stations are all counted in
 const $=s=>document.querySelector(s);
 const pct=p=>Math.round(p*100)+"%";
 const f3=x=>(x>=0?"+":"")+x.toFixed(3);
+const dub=(iso,opts)=>new Date(iso).toLocaleString("en-IE",
+  {timeZone:"Europe/Dublin",...opts});
 
 async function j(url){const r=await fetch(url,{cache:"no-store"});
   if(!r.ok)throw new Error(url);return r.json();}
 
-// ---- verdict banner ----
+/* verdict notice + tick strip */
+function ticks(n,total){
+  $("#ticks").innerHTML=Array.from({length:total},(_,i)=>
+    `<span class="${i<n?"on":""}" style="--i:${i}"></span>`).join("");
+}
 j("ledger/gate.json").then(g=>{
   const el=$("#gate"),s=$("#gate .status");
+  ticks(Math.min(g.scored_days,g.required_days),g.required_days);
   if(g.status==="PENDING"){
-    s.textContent=`PENDING — day ${g.scored_days} of ${g.required_days}`;
+    s.textContent=`VERDICT: PENDING — DAY ${g.scored_days} OF ${g.required_days}`;
   }else{
-    el.className="banner "+g.status.toLowerCase();
-    s.textContent=g.status.replace("_"," ");
+    el.className=g.status.toLowerCase();
+    s.textContent="VERDICT: "+g.status.replace("_"," ");
   }
-}).catch(()=>{$("#gate .status").textContent="PENDING — first outcomes land after tonight's scoring";});
+}).catch(()=>{ticks(0,28);
+  $("#gate .status").textContent="VERDICT: PENDING — AWAITING FIRST SCORED DAY";});
 
-// ---- commuter lookup ----
+/* commuter lookup */
 let LATEST=null;
 j("ledger/latest.json").then(d=>{
   LATEST=d;
+  $("#updated").textContent="feed updated "+dub(d.generated_at_utc,
+    {day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
   const names=[...new Set(d.forecasts.map(f=>f.name))].sort();
   $("#stations").innerHTML=names.map(n=>`<option value="${n}">`).join("");
   $("#latest-note").textContent=
-    `Forecasts for ${names.length} stations, issued ${new Date(d.generated_at_utc).toLocaleString()}. Type your station above.`;
-}).catch(()=>{$("#latest-note").textContent="No live forecast feed yet — the next issuance run publishes it.";});
+    `Live forecasts for ${names.length} stations. Times shown in Dublin time.`;
+}).catch(()=>{
+  $("#updated").textContent="feed pending";
+  $("#latest-note").textContent="No live feed yet — the next issuance run publishes it.";
+});
 
 $("#q").addEventListener("input",e=>{
   if(!LATEST)return;
-  const rows=LATEST.forecasts.filter(f=>f.name.toLowerCase()===e.target.value.toLowerCase());
-  const box=$("#station-result");
-  if(!rows.length){return;}
-  const windows={};
-  rows.forEach(f=>{(windows[f.target_ts_utc]??={}).name=f.name;
-    windows[f.target_ts_utc][f.event]=f;});
-  box.innerHTML=Object.entries(windows).sort().map(([t,w])=>{
-    const dt=new Date(t);
-    const when=dt.toLocaleString([],{weekday:"short",hour:"2-digit",minute:"2-digit"});
-    const bike=w.bike,dock=w.dock;
-    return `<div class="card"><b>${w.name}</b> — ${when}
-      <div class="probs">
-      ${bike?`<div class="prob"><div class="val">${pct(bike.p)}</div><div class="lbl">at least one bike</div></div>`:""}
-      ${dock?`<div class="prob"><div class="val">${pct(dock.p)}</div><div class="lbl">at least one free dock</div></div>`:""}
-      </div>
-      <div class="note">forecast made ${new Date((bike||dock).issued_at_utc).toLocaleString()} (${(bike||dock).horizon} horizon)</div>
-      </div>`;
-  }).join("");
+  const v=e.target.value.toLowerCase();
+  const rows=LATEST.forecasts.filter(f=>f.name.toLowerCase()===v);
+  if(!rows.length)return;
+  const byTarget={};
+  rows.forEach(f=>{(byTarget[f.target_ts_utc]??={}).name=f.name;
+    byTarget[f.target_ts_utc][f.event]=f;});
+  $("#station-result").innerHTML=Object.entries(byTarget).sort()
+    .map(([t,w])=>{
+      const any=w.bike||w.dock;
+      return `<div class="stn">
+        <span class="name">${w.name}</span>
+        <span class="when">${dub(t,{weekday:"long",hour:"2-digit",minute:"2-digit"})}</span>
+        <div class="row">
+          ${w.bike?`<div class="pair"><span class="big">${pct(w.bike.p)}</span><span class="lbl">at least one bike</span></div>`:""}
+          ${w.dock?`<div class="pair"><span class="big">${pct(w.dock.p)}</span><span class="lbl">at least one free dock</span></div>`:""}
+        </div>
+        <div class="issued">forecast made ${dub(any.issued_at_utc,{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})} · ${any.horizon} horizon · model ${LATEST.forecasts[0]?"v1":""}</div>
+      </div>`;}).join("");
 });
 
-// ---- evidence + calibration ----
+/* evidence + calibration */
 j("ledger/summary.json").then(s=>{
   const rows=s.groups.map(g=>{
     const c1=g.bss_vs_clim,c2=g.bss_vs_pers;
-    return `<tr><td>${g.event} / ${g.horizon}</td><td>${g.n}</td>
+    return `<tr><td>${g.event} · ${g.horizon}</td><td>${g.n.toLocaleString()}</td>
       <td>${g.brier_model.toFixed(4)}</td><td>${g.brier_clim.toFixed(4)}</td>
       <td>${g.brier_pers.toFixed(4)}</td>
       <td class="${c1>0?"pos":"neg"}">${f3(c1)}</td>
       <td class="${c2>0?"pos":"neg"}">${f3(c2)}</td></tr>`;}).join("");
   const sc=s.status_counts;
   $("#evidence").innerHTML=
-    `<div class="counts">
-       <div>scored <b>${sc.SCORED||0}</b></div>
-       <div>unscoreable gaps <b>${sc.UNSCOREABLE_GAP||0}</b></div>
-       <div>excluded stations <b>${sc.EXCLUDED_STATION||0}</b></div>
-       <div>scored days <b>${s.scored_days}</b></div>
-     </div>
+    `<p class="countline">SCORED <b>${(sc.SCORED||0).toLocaleString()}</b>
+      &nbsp;·&nbsp; UNSCOREABLE GAPS <b>${sc.UNSCOREABLE_GAP||0}</b>
+      &nbsp;·&nbsp; EXCLUDED <b>${sc.EXCLUDED_STATION||0}</b>
+      &nbsp;·&nbsp; SCORED DAYS <b>${s.scored_days}</b></p>
      <div class="scroll"><table>
-     <tr><th>set</th><th>n</th><th>Brier model</th><th>climatology</th>
-     <th>persistence</th><th>BSS vs clim</th><th>BSS vs pers</th></tr>
-     ${rows}</table></div>
-     <p class="note">BSS &gt; 0 = better than the baseline. Gaps and exclusions
-     are published, never dropped silently.</p>`;
+     <caption>Brier scores, lower is better. BSS &gt; 0 beats the baseline.</caption>
+     <thead><tr><th>set</th><th>n</th><th>model</th><th>climatology</th>
+     <th>persistence</th><th>BSS v clim</th><th>BSS v pers</th></tr></thead>
+     <tbody>${rows}</tbody></table></div>`;
   drawReliability(s.groups);
 }).catch(()=>{$("#evidence").innerHTML=
-  '<p class="note">No scored outcomes yet — scoring runs nightly at 23:45 UTC. '+
-  'The first evidence appears after the first full forecast day.</p>';});
+  '<p class="note">No scored outcomes yet. Scoring runs nightly at 23:45 UTC; '+
+  'the first evidence appears after the first full forecast day, and this '+
+  'section will fill in on its own.</p>';});
 
 function drawReliability(groups){
-  const W=210,H=210,pad=28;
-  const svgs=groups.map(g=>{
+  const W=230,H=230,p=30;
+  $("#reliability").innerHTML=groups.map(g=>{
     const dots=g.reliability.map(b=>{
-      const x=pad+b.p_mean*(W-2*pad),y=H-pad-b.y_rate*(H-2*pad);
-      return `<circle cx="${x}" cy="${y}" r="3.4" fill="var(--accent)"><title>${b.count} forecasts near ${pct(b.p_mean)}: happened ${pct(b.y_rate)}</title></circle>`;
+      const x=p+b.p_mean*(W-2*p),y=H-p-b.y_rate*(H-2*p);
+      return `<circle class="dot" cx="${x}" cy="${y}" r="3.6"><title>${b.count} forecasts near ${pct(b.p_mean)} — happened ${pct(b.y_rate)} of the time</title></circle>`;
     }).join("");
-    return `<svg width="${W}" height="${H}" role="img" aria-label="reliability ${g.event} ${g.horizon}">
-      <line x1="${pad}" y1="${H-pad}" x2="${W-pad}" y2="${pad}" stroke="var(--line)" stroke-dasharray="4 4"/>
-      <rect x="${pad}" y="${pad}" width="${W-2*pad}" height="${H-2*pad}" fill="none" stroke="var(--line)"/>
-      ${dots}
-      <text x="${W/2}" y="${H-6}" text-anchor="middle">${g.event} · ${g.horizon}</text>
-    </svg>`;});
-  $("#reliability").innerHTML=`<div style="display:flex;gap:.8rem;flex-wrap:wrap">${svgs.join("")}</div>`;
+    return `<figure><svg width="${W}" height="${H}" role="img"
+      aria-label="reliability, ${g.event} ${g.horizon}">
+      <rect class="frame" x="${p}" y="${p}" width="${W-2*p}" height="${H-2*p}"/>
+      <line class="diag" x1="${p}" y1="${H-p}" x2="${W-p}" y2="${p}"/>
+      <text class="ax" x="${p}" y="${H-p+14}">0</text>
+      <text class="ax" x="${W-p}" y="${H-p+14}" text-anchor="end">100%</text>
+      <text class="ax" x="${p-4}" y="${p+4}" text-anchor="end">100%</text>
+      ${dots}</svg>
+      <figcaption>${g.event} · ${g.horizon} horizon</figcaption></figure>`;
+  }).join("");
 }
 </script>
 </body>
