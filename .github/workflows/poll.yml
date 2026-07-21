@@ -1,7 +1,8 @@
 name: poll
 on:
-  schedule:
-    - cron: "*/10 * * * *"
+  # schedule removed 2026-07-21: Actions cron delivered ~90-min gaps
+  # (measured); the Oracle VM crontab is the primary poller now — see
+  # ops/RUNBOOK.md. Manual/backfill polls remain available via dispatch.
   workflow_dispatch:
 concurrency:
   group: poll
