@@ -1,0 +1,2285 @@
+{
+"generated_at_utc": "2026-07-21T22:57:18.433214+00:00",
+"forecasts": [
+{
+"station_id": "1",
+"name": "CLARENDON ROW",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9411
+},
+{
+"station_id": "1",
+"name": "CLARENDON ROW",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9943
+},
+{
+"station_id": "10",
+"name": "DAME STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9233
+},
+{
+"station_id": "10",
+"name": "DAME STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9758
+},
+{
+"station_id": "100",
+"name": "HEUSTON BRIDGE (SOUTH)",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.7382
+},
+{
+"station_id": "100",
+"name": "HEUSTON BRIDGE (SOUTH)",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.4406
+},
+{
+"station_id": "101",
+"name": "KING STREET NORTH",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9132
+},
+{
+"station_id": "101",
+"name": "KING STREET NORTH",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9999
+},
+{
+"station_id": "102",
+"name": "WESTERN WAY",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8354
+},
+{
+"station_id": "102",
+"name": "WESTERN WAY",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9999
+},
+{
+"station_id": "103",
+"name": "GRANGEGORMAN LOWER (SOUTH)",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.619
+},
+{
+"station_id": "103",
+"name": "GRANGEGORMAN LOWER (SOUTH)",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9999
+},
+{
+"station_id": "104",
+"name": "GRANGEGORMAN LOWER (CENTRAL)",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.3327
+},
+{
+"station_id": "104",
+"name": "GRANGEGORMAN LOWER (CENTRAL)",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9999
+},
+{
+"station_id": "105",
+"name": "GRANGEGORMAN LOWER (NORTH)",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9703
+},
+{
+"station_id": "105",
+"name": "GRANGEGORMAN LOWER (NORTH)",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9999
+},
+{
+"station_id": "106",
+"name": "RATHDOWN ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.7857
+},
+{
+"station_id": "106",
+"name": "RATHDOWN ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 1.0
+},
+{
+"station_id": "107",
+"name": "CHARLEVILLE ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.988
+},
+{
+"station_id": "107",
+"name": "CHARLEVILLE ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9999
+},
+{
+"station_id": "108",
+"name": "AVONDALE ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.7284
+},
+{
+"station_id": "108",
+"name": "AVONDALE ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 1.0
+},
+{
+"station_id": "109",
+"name": "BUCKINGHAM STREET LOWER",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9924
+},
+{
+"station_id": "109",
+"name": "BUCKINGHAM STREET LOWER",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9651
+},
+{
+"station_id": "11",
+"name": "EARLSFORT TERRACE",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.748
+},
+{
+"station_id": "11",
+"name": "EARLSFORT TERRACE",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 1.0
+},
+{
+"station_id": "110",
+"name": "PHIBSBOROUGH ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.7792
+},
+{
+"station_id": "110",
+"name": "PHIBSBOROUGH ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9999
+},
+{
+"station_id": "111",
+"name": "MOUNTJOY SQUARE EAST",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.6605
+},
+{
+"station_id": "111",
+"name": "MOUNTJOY SQUARE EAST",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9999
+},
+{
+"station_id": "112",
+"name": "NORTH CIRCULAR ROAD (O'CONNELL'S)",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9054
+},
+{
+"station_id": "112",
+"name": "NORTH CIRCULAR ROAD (O'CONNELL'S)",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9811
+},
+{
+"station_id": "113",
+"name": "MERRION SQUARE SOUTH",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9331
+},
+{
+"station_id": "113",
+"name": "MERRION SQUARE SOUTH",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9983
+},
+{
+"station_id": "114",
+"name": "WILTON TERRACE (PARK)",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8555
+},
+{
+"station_id": "114",
+"name": "WILTON TERRACE (PARK)",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9949
+},
+{
+"station_id": "115",
+"name": "KILLARNEY STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9959
+},
+{
+"station_id": "115",
+"name": "KILLARNEY STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9796
+},
+{
+"station_id": "116",
+"name": "BROADSTONE",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.6036
+},
+{
+"station_id": "116",
+"name": "BROADSTONE",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 1.0
+},
+{
+"station_id": "117",
+"name": "HANOVER QUAY EAST",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8515
+},
+{
+"station_id": "117",
+"name": "HANOVER QUAY EAST",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9997
+},
+{
+"station_id": "12",
+"name": "ECCLES STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8422
+},
+{
+"station_id": "12",
+"name": "ECCLES STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9999
+},
+{
+"station_id": "13",
+"name": "FITZWILLIAM SQUARE WEST",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.855
+},
+{
+"station_id": "13",
+"name": "FITZWILLIAM SQUARE WEST",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9987
+},
+{
+"station_id": "14",
+"name": "FOWNES STREET UPPER",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.995
+},
+{
+"station_id": "14",
+"name": "FOWNES STREET UPPER",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9573
+},
+{
+"station_id": "15",
+"name": "HARDWICKE STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.495
+},
+{
+"station_id": "15",
+"name": "HARDWICKE STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9998
+},
+{
+"station_id": "16",
+"name": "GEORGES QUAY",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9873
+},
+{
+"station_id": "16",
+"name": "GEORGES QUAY",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.889
+},
+{
+"station_id": "17",
+"name": "GOLDEN LANE",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.7758
+},
+{
+"station_id": "17",
+"name": "GOLDEN LANE",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9992
+},
+{
+"station_id": "18",
+"name": "GRANTHAM STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9239
+},
+{
+"station_id": "18",
+"name": "GRANTHAM STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9993
+},
+{
+"station_id": "19",
+"name": "HERBERT PLACE",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8592
+},
+{
+"station_id": "19",
+"name": "HERBERT PLACE",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9939
+},
+{
+"station_id": "2",
+"name": "BLESSINGTON STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.6547
+},
+{
+"station_id": "2",
+"name": "BLESSINGTON STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9997
+},
+{
+"station_id": "20",
+"name": "JAMES STREET EAST",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8237
+},
+{
+"station_id": "20",
+"name": "JAMES STREET EAST",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9978
+},
+{
+"station_id": "21",
+"name": "LEINSTER STREET SOUTH",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9698
+},
+{
+"station_id": "21",
+"name": "LEINSTER STREET SOUTH",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9835
+},
+{
+"station_id": "22",
+"name": "TOWNSEND STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9917
+},
+{
+"station_id": "22",
+"name": "TOWNSEND STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8323
+},
+{
+"station_id": "23",
+"name": "CUSTOM HOUSE",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9975
+},
+{
+"station_id": "23",
+"name": "CUSTOM HOUSE",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.754
+},
+{
+"station_id": "24",
+"name": "CATHAL BRUGHA STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9911
+},
+{
+"station_id": "24",
+"name": "CATHAL BRUGHA STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9598
+},
+{
+"station_id": "25",
+"name": "MERRION SQUARE EAST",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8938
+},
+{
+"station_id": "25",
+"name": "MERRION SQUARE EAST",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9962
+},
+{
+"station_id": "26",
+"name": "MERRION SQUARE WEST",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9363
+},
+{
+"station_id": "26",
+"name": "MERRION SQUARE WEST",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9416
+},
+{
+"station_id": "27",
+"name": "MOLESWORTH STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9101
+},
+{
+"station_id": "27",
+"name": "MOLESWORTH STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9945
+},
+{
+"station_id": "28",
+"name": "MOUNTJOY SQUARE WEST",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8185
+},
+{
+"station_id": "28",
+"name": "MOUNTJOY SQUARE WEST",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 1.0
+},
+{
+"station_id": "29",
+"name": "ORMOND QUAY UPPER",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9864
+},
+{
+"station_id": "29",
+"name": "ORMOND QUAY UPPER",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9481
+},
+{
+"station_id": "3",
+"name": "BOLTON STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9692
+},
+{
+"station_id": "3",
+"name": "BOLTON STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9724
+},
+{
+"station_id": "31",
+"name": "PARNELL STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9673
+},
+{
+"station_id": "31",
+"name": "PARNELL STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9879
+},
+{
+"station_id": "32",
+"name": "PEARSE STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9885
+},
+{
+"station_id": "32",
+"name": "PEARSE STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9246
+},
+{
+"station_id": "33",
+"name": "PRINCES STREET / O'CONNELL STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9924
+},
+{
+"station_id": "33",
+"name": "PRINCES STREET / O'CONNELL STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8815
+},
+{
+"station_id": "34",
+"name": "LENNOX STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9671
+},
+{
+"station_id": "34",
+"name": "LENNOX STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.924
+},
+{
+"station_id": "35",
+"name": "SMITHFIELD",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9601
+},
+{
+"station_id": "35",
+"name": "SMITHFIELD",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9874
+},
+{
+"station_id": "36",
+"name": "ST. STEPHEN'S GREEN EAST",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8925
+},
+{
+"station_id": "36",
+"name": "ST. STEPHEN'S GREEN EAST",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9995
+},
+{
+"station_id": "37",
+"name": "ST. STEPHEN'S GREEN SOUTH",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.7935
+},
+{
+"station_id": "37",
+"name": "ST. STEPHEN'S GREEN SOUTH",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9994
+},
+{
+"station_id": "38",
+"name": "TALBOT STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9907
+},
+{
+"station_id": "38",
+"name": "TALBOT STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9949
+},
+{
+"station_id": "39",
+"name": "WILTON TERRACE",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.7299
+},
+{
+"station_id": "39",
+"name": "WILTON TERRACE",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9961
+},
+{
+"station_id": "4",
+"name": "GREEK STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9597
+},
+{
+"station_id": "4",
+"name": "GREEK STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.971
+},
+{
+"station_id": "40",
+"name": "JERVIS STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9839
+},
+{
+"station_id": "40",
+"name": "JERVIS STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9809
+},
+{
+"station_id": "41",
+"name": "HARCOURT TERRACE",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8443
+},
+{
+"station_id": "41",
+"name": "HARCOURT TERRACE",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.995
+},
+{
+"station_id": "42",
+"name": "SMITHFIELD NORTH",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.998
+},
+{
+"station_id": "42",
+"name": "SMITHFIELD NORTH",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9549
+},
+{
+"station_id": "43",
+"name": "PORTOBELLO ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9074
+},
+{
+"station_id": "43",
+"name": "PORTOBELLO ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9911
+},
+{
+"station_id": "44",
+"name": "UPPER SHERRARD STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8728
+},
+{
+"station_id": "44",
+"name": "UPPER SHERRARD STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9999
+},
+{
+"station_id": "45",
+"name": "DEVERELL PLACE",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9885
+},
+{
+"station_id": "45",
+"name": "DEVERELL PLACE",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9965
+},
+{
+"station_id": "47",
+"name": "HERBERT STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8501
+},
+{
+"station_id": "47",
+"name": "HERBERT STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9993
+},
+{
+"station_id": "48",
+"name": "EXCISE WALK",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.995
+},
+{
+"station_id": "48",
+"name": "EXCISE WALK",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9985
+},
+{
+"station_id": "49",
+"name": "GUILD STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9812
+},
+{
+"station_id": "49",
+"name": "GUILD STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9856
+},
+{
+"station_id": "5",
+"name": "CHARLEMONT PLACE",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9142
+},
+{
+"station_id": "5",
+"name": "CHARLEMONT PLACE",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9435
+},
+{
+"station_id": "50",
+"name": "GEORGES LANE",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9954
+},
+{
+"station_id": "50",
+"name": "GEORGES LANE",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9804
+},
+{
+"station_id": "51",
+"name": "YORK STREET WEST",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.873
+},
+{
+"station_id": "51",
+"name": "YORK STREET WEST",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9929
+},
+{
+"station_id": "52",
+"name": "YORK STREET EAST",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.959
+},
+{
+"station_id": "52",
+"name": "YORK STREET EAST",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9979
+},
+{
+"station_id": "53",
+"name": "NEWMAN HOUSE",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8934
+},
+{
+"station_id": "53",
+"name": "NEWMAN HOUSE",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9998
+},
+{
+"station_id": "54",
+"name": "CLONMEL STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.7272
+},
+{
+"station_id": "54",
+"name": "CLONMEL STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9996
+},
+{
+"station_id": "55",
+"name": "HATCH STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.7011
+},
+{
+"station_id": "55",
+"name": "HATCH STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 1.0
+},
+{
+"station_id": "56",
+"name": "MOUNT STREET LOWER",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8828
+},
+{
+"station_id": "56",
+"name": "MOUNT STREET LOWER",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.999
+},
+{
+"station_id": "57",
+"name": "GRATTAN STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9304
+},
+{
+"station_id": "57",
+"name": "GRATTAN STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9986
+},
+{
+"station_id": "58",
+"name": "SIR PATRICK DUN'S",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9888
+},
+{
+"station_id": "58",
+"name": "SIR PATRICK DUN'S",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9905
+},
+{
+"station_id": "59",
+"name": "DENMARK STREET GREAT",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.5249
+},
+{
+"station_id": "59",
+"name": "DENMARK STREET GREAT",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9999
+},
+{
+"station_id": "6",
+"name": "CHRISTCHURCH PLACE",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9053
+},
+{
+"station_id": "6",
+"name": "CHRISTCHURCH PLACE",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9896
+},
+{
+"station_id": "60",
+"name": "NORTH CIRCULAR ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9754
+},
+{
+"station_id": "60",
+"name": "NORTH CIRCULAR ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9912
+},
+{
+"station_id": "61",
+"name": "HARDWICKE PLACE",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.4808
+},
+{
+"station_id": "61",
+"name": "HARDWICKE PLACE",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9999
+},
+{
+"station_id": "62",
+"name": "LIME STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.905
+},
+{
+"station_id": "62",
+"name": "LIME STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9984
+},
+{
+"station_id": "63",
+"name": "FENIAN STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9948
+},
+{
+"station_id": "63",
+"name": "FENIAN STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9297
+},
+{
+"station_id": "64",
+"name": "SANDWITH STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9957
+},
+{
+"station_id": "64",
+"name": "SANDWITH STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9921
+},
+{
+"station_id": "65",
+"name": "CONVENTION CENTRE",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.6659
+},
+{
+"station_id": "65",
+"name": "CONVENTION CENTRE",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9989
+},
+{
+"station_id": "66",
+"name": "NEW CENTRAL BANK",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8175
+},
+{
+"station_id": "66",
+"name": "NEW CENTRAL BANK",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9977
+},
+{
+"station_id": "67",
+"name": "THE POINT",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9639
+},
+{
+"station_id": "67",
+"name": "THE POINT",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9982
+},
+{
+"station_id": "68",
+"name": "HANOVER QUAY",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8951
+},
+{
+"station_id": "68",
+"name": "HANOVER QUAY",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9994
+},
+{
+"station_id": "69",
+"name": "GRAND CANAL DOCK",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9045
+},
+{
+"station_id": "69",
+"name": "GRAND CANAL DOCK",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9952
+},
+{
+"station_id": "7",
+"name": "HIGH STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.6631
+},
+{
+"station_id": "7",
+"name": "HIGH STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 1.0
+},
+{
+"station_id": "70",
+"name": "BARROW STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9679
+},
+{
+"station_id": "70",
+"name": "BARROW STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9078
+},
+{
+"station_id": "71",
+"name": "KEVIN STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8893
+},
+{
+"station_id": "71",
+"name": "KEVIN STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 1.0
+},
+{
+"station_id": "72",
+"name": "JOHN STREET WEST",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.6427
+},
+{
+"station_id": "72",
+"name": "JOHN STREET WEST",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9998
+},
+{
+"station_id": "73",
+"name": "FRANCIS STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.708
+},
+{
+"station_id": "73",
+"name": "FRANCIS STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 1.0
+},
+{
+"station_id": "74",
+"name": "OLIVER BOND STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9423
+},
+{
+"station_id": "74",
+"name": "OLIVER BOND STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 1.0
+},
+{
+"station_id": "75",
+"name": "JAMES STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9968
+},
+{
+"station_id": "75",
+"name": "JAMES STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9999
+},
+{
+"station_id": "76",
+"name": "MARKET STREET SOUTH",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8675
+},
+{
+"station_id": "76",
+"name": "MARKET STREET SOUTH",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 1.0
+},
+{
+"station_id": "77",
+"name": "WOLFE TONE STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.872
+},
+{
+"station_id": "77",
+"name": "WOLFE TONE STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9913
+},
+{
+"station_id": "78",
+"name": "MATER HOSPITAL",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8455
+},
+{
+"station_id": "78",
+"name": "MATER HOSPITAL",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9999
+},
+{
+"station_id": "79",
+"name": "ECCLES STREET EAST",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.5662
+},
+{
+"station_id": "79",
+"name": "ECCLES STREET EAST",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.998
+},
+{
+"station_id": "8",
+"name": "CUSTOM HOUSE QUAY",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9379
+},
+{
+"station_id": "8",
+"name": "CUSTOM HOUSE QUAY",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8138
+},
+{
+"station_id": "80",
+"name": "ST JAMES HOSPITAL (LUAS)",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.7321
+},
+{
+"station_id": "80",
+"name": "ST JAMES HOSPITAL (LUAS)",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 1.0
+},
+{
+"station_id": "82",
+"name": "MOUNT BROWN",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9714
+},
+{
+"station_id": "82",
+"name": "MOUNT BROWN",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9999
+},
+{
+"station_id": "83",
+"name": "EMMET ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9956
+},
+{
+"station_id": "83",
+"name": "EMMET ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9995
+},
+{
+"station_id": "84",
+"name": "BROOKFIELD ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9959
+},
+{
+"station_id": "84",
+"name": "BROOKFIELD ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9975
+},
+{
+"station_id": "85",
+"name": "ROTHE ABBEY",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9975
+},
+{
+"station_id": "85",
+"name": "ROTHE ABBEY",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9999
+},
+{
+"station_id": "86",
+"name": "PARKGATE STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9806
+},
+{
+"station_id": "86",
+"name": "PARKGATE STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9673
+},
+{
+"station_id": "87",
+"name": "COLLINS BARRACKS MUSEUM",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9681
+},
+{
+"station_id": "87",
+"name": "COLLINS BARRACKS MUSEUM",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9957
+},
+{
+"station_id": "88",
+"name": "BLACKHALL PLACE",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9944
+},
+{
+"station_id": "88",
+"name": "BLACKHALL PLACE",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9932
+},
+{
+"station_id": "89",
+"name": "FITZWILLIAM SQUARE EAST",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.6644
+},
+{
+"station_id": "89",
+"name": "FITZWILLIAM SQUARE EAST",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9989
+},
+{
+"station_id": "9",
+"name": "EXCHEQUER STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9657
+},
+{
+"station_id": "9",
+"name": "EXCHEQUER STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8919
+},
+{
+"station_id": "90",
+"name": "BENSON STREET",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.7299
+},
+{
+"station_id": "90",
+"name": "BENSON STREET",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9485
+},
+{
+"station_id": "91",
+"name": "SOUTH DOCK ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.991
+},
+{
+"station_id": "91",
+"name": "SOUTH DOCK ROAD",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9553
+},
+{
+"station_id": "92",
+"name": "HEUSTON BRIDGE (NORTH)",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9854
+},
+{
+"station_id": "92",
+"name": "HEUSTON BRIDGE (NORTH)",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.8962
+},
+{
+"station_id": "93",
+"name": "HEUSTON STATION (CENTRAL)",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9606
+},
+{
+"station_id": "93",
+"name": "HEUSTON STATION (CENTRAL)",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.7165
+},
+{
+"station_id": "94",
+"name": "HEUSTON STATION (CAR PARK)",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9925
+},
+{
+"station_id": "94",
+"name": "HEUSTON STATION (CAR PARK)",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9842
+},
+{
+"station_id": "95",
+"name": "ROYAL HOSPITAL",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9922
+},
+{
+"station_id": "95",
+"name": "ROYAL HOSPITAL",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9991
+},
+{
+"station_id": "96",
+"name": "KILMAINHAM LANE",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9517
+},
+{
+"station_id": "96",
+"name": "KILMAINHAM LANE",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9998
+},
+{
+"station_id": "97",
+"name": "KILMAINHAM GAOL",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.993
+},
+{
+"station_id": "97",
+"name": "KILMAINHAM GAOL",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9999
+},
+{
+"station_id": "98",
+"name": "FREDERICK STREET SOUTH",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9326
+},
+{
+"station_id": "98",
+"name": "FREDERICK STREET SOUTH",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9994
+},
+{
+"station_id": "99",
+"name": "CITY QUAY",
+"window": "morning",
+"horizon": "long",
+"event": "bike",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9596
+},
+{
+"station_id": "99",
+"name": "CITY QUAY",
+"window": "morning",
+"horizon": "long",
+"event": "dock",
+"target_ts_utc": "2026-07-22T07:30:00+00:00",
+"issued_at_utc": "2026-07-21T22:02:03.502514+00:00",
+"p": 0.9988
+}
+]
+}
