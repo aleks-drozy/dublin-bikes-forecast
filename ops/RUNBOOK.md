@@ -7,15 +7,23 @@ vs the requested 10). Polling therefore runs on the shared Oracle VM
 (`ubuntu@<vm>`, same box as ghost-bus) under the ubuntu user's crontab:
 
 ```
-*/10 * * * * flock -n /tmp/bikes-poll.lock /opt/dublin-bikes/ops/poll_vm.sh >> /home/ubuntu/bikes-poll.log 2>&1
+*/10 * * * * flock -n /tmp/bikes-repo.lock /opt/dublin-bikes/ops/poll_vm.sh >> /home/ubuntu/bikes-poll.log 2>&1
+5 * * * *    flock -n /tmp/bikes-repo.lock /opt/dublin-bikes/ops/issue_vm.sh >> /home/ubuntu/bikes-issue.log 2>&1
+45 23 * * *  flock -n /tmp/bikes-repo.lock /opt/dublin-bikes/ops/score_vm.sh >> /home/ubuntu/bikes-score.log 2>&1
 ```
+
+All three share ONE lock (`bikes-repo.lock`): they pull/commit/push the same
+clone, so their git operations must serialize. The issuance cron fires
+hourly at :05 (fresh :00 poll on disk) and `issuance_sets()` exits unless
+the Dublin hour is 07 or 16 — DST-proof without touching crontab twice a
+year. Scoring runs 23:45 UTC, after both targets have matured year-round.
 
 Layout on the VM:
 - `/opt/dublin-bikes` — clone via the `github-bikes` SSH alias (deploy key
   `~/.ssh/bikes_deploy`, write-scoped to this repo only).
-- `.venv` with pandas + pyarrow only (`pip install pandas pyarrow`, then
-  `pip install -e . --no-deps` — sklearn/matplotlib are NOT installed on the
-  1 GB box; they are model-phase deps, not poller deps).
+- `.venv` with pandas + pyarrow + scikit-learn + holidays (P3: issuance
+  loads the frozen models, so sklearn joined the venv 2026-07-21; matplotlib
+  stays off the box — plotting is P4/local). `pip install -e . --no-deps`.
 - Log: `~/bikes-poll.log` (poll summaries + any git errors).
 
 The Actions workflow keeps `workflow_dispatch` for manual/backfill polls but
