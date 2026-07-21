@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "result": {
+    "resources": [
+      {"name": "Dublin Bikes Historical Station Data June 2026",
+       "url": "https://example.test/download/dublin-bikes_station_status_062026.csv"},
+      {"name": "Dublin Bikes Historical Station Data October 2024",
+       "url": "https://example.test/download/dublin-bikes_station_status_102024.csv"},
+      {"name": "DublinBike historical data 2023-08",
+       "url": "https://example.test/download/dublinbike-historical-data-2023-08.csv"},
+      {"name": "Dublinbikes Current Station Geojson",
+       "url": "https://example.test/download/stations.geojson"},
+      {"name": "Dublinbikes GBFS API",
+       "url": "https://api.cyclocity.fr/contracts/dublin/gbfs/gbfs.json"}
+    ]
+  }
+}

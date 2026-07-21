@@ -1,0 +1,4 @@
+"system_id","last_reported","station_id","num_bikes_available","num_docks_available","is_installed","is_renting","is_returning","name","short_name","address","lat","lon","region_id","capacity"
+"dublin_bikes","2026-06-01 00:05:00","1",20,11,true,true,true,"CLARENDON ROW","","Clarendon Row",53.340927,-6.262501,"",31
+"dublin_bikes","2026-06-01 00:05:00","10",15,1,true,false,true,"DAME STREET","","Dame Street",53.344006,-6.266802,"",16
+"dublin_bikes","2026-06-01 00:10:00","1",19,12,true,true,true,"CLARENDON ROW","","Clarendon Row",53.340927,-6.262501,"",31
