@@ -6,14 +6,20 @@ TARGET = datetime(2026, 7, 22, 7, 30, tzinfo=timezone.utc)
 
 
 def test_within_tolerance_both_sides():
-    assert eligible_observation(TARGET, TARGET - timedelta(minutes=9), TARGET)
-    assert eligible_observation(TARGET, TARGET + timedelta(minutes=9), TARGET)
+    # last_reported must not sit in the poll's future - use the poll time itself
+    early = TARGET - timedelta(minutes=9)
+    late = TARGET + timedelta(minutes=9)
+    assert eligible_observation(TARGET, early, early)
+    assert eligible_observation(TARGET, late, late)
 
 
 def test_boundary_is_inclusive_and_beyond_is_out():
-    assert eligible_observation(TARGET, TARGET + timedelta(minutes=10), TARGET)
-    assert not eligible_observation(TARGET, TARGET + timedelta(minutes=10, seconds=1), TARGET)
-    assert not eligible_observation(TARGET, TARGET - timedelta(minutes=11), TARGET)
+    at10 = TARGET + timedelta(minutes=10)
+    assert eligible_observation(TARGET, at10, at10)
+    just_over = TARGET + timedelta(minutes=10, seconds=1)
+    assert not eligible_observation(TARGET, just_over, just_over)
+    early11 = TARGET - timedelta(minutes=11)
+    assert not eligible_observation(TARGET, early11, early11)
 
 
 def test_ancient_last_reported_does_not_disqualify():
