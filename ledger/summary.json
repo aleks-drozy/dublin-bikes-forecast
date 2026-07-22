@@ -1,0 +1,8 @@
+{
+ "groups": [],
+ "status_counts": {
+  "UNSCOREABLE_GAP": 228
+ },
+ "scored_days": 0,
+ "gate": "28 scored days; long-horizon BSS>0 vs both baselines, day-clustered bootstrap 95% CI excluding 0 (pre-registered)"
+}
