@@ -1,8 +1,258 @@
 {
- "groups": [],
+ "groups": [
+  {
+   "event": "bike",
+   "horizon": "long",
+   "n": 114,
+   "base_rate": 0.8947368421052632,
+   "brier_model": 0.08695012359649124,
+   "brier_clim": 0.06918260815789473,
+   "brier_pers": 0.18421052631578946,
+   "bss_vs_clim": -0.2568205494370188,
+   "bss_vs_pers": 0.5279850433333333,
+   "reliability": [
+    {
+     "bin": 3,
+     "p_mean": 0.3483,
+     "y_rate": 1.0,
+     "count": 1,
+     "bin_mid": 0.35
+    },
+    {
+     "bin": 4,
+     "p_mean": 0.4065,
+     "y_rate": 1.0,
+     "count": 1,
+     "bin_mid": 0.45
+    },
+    {
+     "bin": 5,
+     "p_mean": 0.55035,
+     "y_rate": 0.0,
+     "count": 2,
+     "bin_mid": 0.55
+    },
+    {
+     "bin": 6,
+     "p_mean": 0.6800999999999999,
+     "y_rate": 1.0,
+     "count": 4,
+     "bin_mid": 0.65
+    },
+    {
+     "bin": 7,
+     "p_mean": 0.73444,
+     "y_rate": 0.7,
+     "count": 10,
+     "bin_mid": 0.75
+    },
+    {
+     "bin": 8,
+     "p_mean": 0.8554444444444445,
+     "y_rate": 0.8148148148148148,
+     "count": 27,
+     "bin_mid": 0.85
+    },
+    {
+     "bin": 9,
+     "p_mean": 0.9696898550724639,
+     "y_rate": 0.9710144927536232,
+     "count": 69,
+     "bin_mid": 0.95
+    }
+   ]
+  },
+  {
+   "event": "bike",
+   "horizon": "short",
+   "n": 114,
+   "base_rate": 0.8947368421052632,
+   "brier_model": 0.06276863596491228,
+   "brier_clim": 0.06918260815789473,
+   "brier_pers": 0.14035087719298245,
+   "bss_vs_clim": 0.09271076017174595,
+   "bss_vs_pers": 0.55277346875,
+   "reliability": [
+    {
+     "bin": 1,
+     "p_mean": 0.1955,
+     "y_rate": 0.0,
+     "count": 1,
+     "bin_mid": 0.15
+    },
+    {
+     "bin": 2,
+     "p_mean": 0.2913,
+     "y_rate": 1.0,
+     "count": 1,
+     "bin_mid": 0.25
+    },
+    {
+     "bin": 3,
+     "p_mean": 0.3998,
+     "y_rate": 1.0,
+     "count": 1,
+     "bin_mid": 0.35
+    },
+    {
+     "bin": 4,
+     "p_mean": 0.4598333333333333,
+     "y_rate": 0.0,
+     "count": 3,
+     "bin_mid": 0.45
+    },
+    {
+     "bin": 5,
+     "p_mean": 0.58625,
+     "y_rate": 0.5,
+     "count": 2,
+     "bin_mid": 0.55
+    },
+    {
+     "bin": 6,
+     "p_mean": 0.6545,
+     "y_rate": 0.6,
+     "count": 10,
+     "bin_mid": 0.65
+    },
+    {
+     "bin": 7,
+     "p_mean": 0.7802428571428572,
+     "y_rate": 0.7142857142857143,
+     "count": 7,
+     "bin_mid": 0.75
+    },
+    {
+     "bin": 8,
+     "p_mean": 0.8364636363636364,
+     "y_rate": 0.9090909090909091,
+     "count": 11,
+     "bin_mid": 0.85
+    },
+    {
+     "bin": 9,
+     "p_mean": 0.9715666666666667,
+     "y_rate": 1.0,
+     "count": 78,
+     "bin_mid": 0.95
+    }
+   ]
+  },
+  {
+   "event": "dock",
+   "horizon": "long",
+   "n": 114,
+   "base_rate": 0.9649122807017544,
+   "brier_model": 0.013556507894736843,
+   "brier_clim": 0.021409201578947375,
+   "brier_pers": 0.07894736842105263,
+   "bss_vs_clim": 0.36679059026341443,
+   "bss_vs_pers": 0.8282842333333333,
+   "reliability": [
+    {
+     "bin": 2,
+     "p_mean": 0.2017,
+     "y_rate": 0.0,
+     "count": 1,
+     "bin_mid": 0.25
+    },
+    {
+     "bin": 3,
+     "p_mean": 0.3538,
+     "y_rate": 0.0,
+     "count": 1,
+     "bin_mid": 0.35
+    },
+    {
+     "bin": 6,
+     "p_mean": 0.6534500000000001,
+     "y_rate": 0.5,
+     "count": 2,
+     "bin_mid": 0.65
+    },
+    {
+     "bin": 7,
+     "p_mean": 0.7601,
+     "y_rate": 1.0,
+     "count": 2,
+     "bin_mid": 0.75
+    },
+    {
+     "bin": 8,
+     "p_mean": 0.86025,
+     "y_rate": 0.75,
+     "count": 4,
+     "bin_mid": 0.85
+    },
+    {
+     "bin": 9,
+     "p_mean": 0.98875,
+     "y_rate": 1.0,
+     "count": 104,
+     "bin_mid": 0.95
+    }
+   ]
+  },
+  {
+   "event": "dock",
+   "horizon": "short",
+   "n": 114,
+   "base_rate": 0.9649122807017544,
+   "brier_model": 0.012662385087719297,
+   "brier_clim": 0.021409201578947375,
+   "brier_pers": 0.043859649122807015,
+   "bss_vs_clim": 0.40855407236807995,
+   "bss_vs_pers": 0.7112976200000001,
+   "reliability": [
+    {
+     "bin": 1,
+     "p_mean": 0.1355,
+     "y_rate": 0.0,
+     "count": 1,
+     "bin_mid": 0.15
+    },
+    {
+     "bin": 2,
+     "p_mean": 0.2657,
+     "y_rate": 0.0,
+     "count": 1,
+     "bin_mid": 0.25
+    },
+    {
+     "bin": 6,
+     "p_mean": 0.6423333333333333,
+     "y_rate": 0.6666666666666666,
+     "count": 3,
+     "bin_mid": 0.65
+    },
+    {
+     "bin": 7,
+     "p_mean": 0.7436,
+     "y_rate": 0.5,
+     "count": 2,
+     "bin_mid": 0.75
+    },
+    {
+     "bin": 8,
+     "p_mean": 0.85362,
+     "y_rate": 1.0,
+     "count": 5,
+     "bin_mid": 0.85
+    },
+    {
+     "bin": 9,
+     "p_mean": 0.9940950980392157,
+     "y_rate": 1.0,
+     "count": 102,
+     "bin_mid": 0.95
+    }
+   ]
+  }
+ ],
  "status_counts": {
+  "SCORED": 456,
   "UNSCOREABLE_GAP": 228
  },
- "scored_days": 0,
+ "scored_days": 1,
  "gate": "28 scored days; long-horizon BSS>0 vs both baselines, day-clustered bootstrap 95% CI excluding 0 (pre-registered)"
 }
