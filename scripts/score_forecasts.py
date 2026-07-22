@@ -7,6 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT))  # bikes.score imports the scoring/ package
 
 from bikes.score import evaluate_gate, score_ledger, write_summary  # noqa: E402
 

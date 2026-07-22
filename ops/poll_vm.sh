@@ -5,6 +5,7 @@
 # breakage, which cron mails to the local log.
 set -euo pipefail
 cd /opt/dublin-bikes
+source ops/recover.sh
 git pull --rebase --quiet
 .venv/bin/python -m bikes.poll
 git add data

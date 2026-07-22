@@ -2,6 +2,7 @@
 # Nightly scoring cycle: pull, score matured forecasts, push outcomes.
 set -euo pipefail
 cd /opt/dublin-bikes
+source ops/recover.sh
 git pull --rebase --quiet
 .venv/bin/python scripts/score_forecasts.py
 git add ledger
