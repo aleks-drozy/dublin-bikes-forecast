@@ -2,7 +2,7 @@
 
 Archive timestamps are naive UTC — proven 2026-07-21 by the commute-flux
 check (weekday peaks at 07:00/16:00 naive = Dublin rush minus IST offset).
-See docs/superpowers/specs/2026-07-21-phase2-offline-model-design.md.
+See docs/specs/2026-07-21-phase2-offline-model.md.
 """
 from __future__ import annotations
 
