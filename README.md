@@ -17,13 +17,15 @@ before any data was collected.
 | Ingestion | **Live** — 10-minute GBFS polls, committed to `data/raw/` |
 | Model | **v1, frozen** 2026-07-21 (`models/v1/manifest.json`) |
 | Live ledger | **Issuing** — first forecast 2026-07-21 22:02 UTC |
-| Scored days | **0 of 28** |
+| Scored days | **1 of 28** (first scoring run 2026-07-22 23:45 UTC, on schedule) |
 | Verdict | **PENDING** — earliest possible ~2026-08-19 |
 
-The live record is deliberately empty of results. The gate needs 28 scored days
-and the first one has not completed, so there is nothing yet to claim. The 228
-targets issued for 2026-07-22 morning are all recorded `UNSCOREABLE_GAP` — no
-observation fell inside the ±10-minute eligibility window — and they are
+One scored day exists and 27 more are needed before anything is claimed —
+single-day skill numbers are noise by design, so none are quoted here; the
+scoreboard renders the live ledger directly. Day 1 is also honestly
+incomplete: the 228 targets issued for the 2026-07-22 morning window are
+all recorded `UNSCOREABLE_GAP` — the first-night poll outage left no
+observation inside the ±10-minute eligibility window — and they are
 published as such rather than quietly dropped.
 
 ## What the offline validation found
