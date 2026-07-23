@@ -300,8 +300,21 @@ j("ledger/latest.json").then(d=>{
 $("#q").addEventListener("input",e=>{
   if(!LATEST)return;
   const v=e.target.value.toLowerCase();
-  const rows=LATEST.forecasts.filter(f=>f.name.toLowerCase()===v);
-  if(!rows.length)return;
+  /* latest.json filters past targets only at WRITE time (issuance runs),
+     so for up to ~15h between runs it still carries a commute window that
+     has already happened. A forecast for the past is not a forecast:
+     filter again at read time, and say when the next one publishes. */
+  const now=Date.now();
+  const rows=LATEST.forecasts.filter(f=>f.name.toLowerCase()===v
+    && Date.parse(f.target_ts_utc)>now);
+  if(!rows.length){
+    if(LATEST.forecasts.some(f=>f.name.toLowerCase()===v)){
+      $("#station-result").innerHTML=
+        '<div class="stn"><span class="name">No upcoming forecast for this station right now.</span>'+
+        '<div class="issued">Forecasts publish at 07:00 and 16:00 Dublin time.</div></div>';
+    }
+    return;
+  }
   const byTarget={};
   rows.forEach(f=>{(byTarget[f.target_ts_utc]??={}).name=f.name;
     byTarget[f.target_ts_utc][f.event]=f;});

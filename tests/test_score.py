@@ -64,6 +64,42 @@ def test_scoring_statuses_and_outcomes(tmp_path):
     assert not (ledger / "outcomes" / "2026-07-23.csv").exists()
 
 
+def test_poisoned_nearest_poll_does_not_mask_a_clean_neighbour(tmp_path):
+    # The eligibility rule has two clauses and only one is monotonic in
+    # |poll_ts - target|: the tolerance clause. The future-clock clause
+    # (last_reported > poll_ts + 5 min) can reject the NEAREST poll while a
+    # slightly farther poll is perfectly eligible - and this feed's
+    # per-station timestamps are exactly broken enough to produce that.
+    # Breaking on the first ineligible observation therefore recorded a
+    # false UNSCOREABLE_GAP that is indistinguishable in the public ledger
+    # from an honest data gap. The scan must skip past clause-2 rejects and
+    # stop only when the distance itself leaves the tolerance window.
+    ledger, raw = setup_fixture(tmp_path, include_gap_station=False)
+
+    def obs(sid, mins_after, bikes, last_reported=None):
+        ts = TARGET + timedelta(minutes=mins_after)
+        return {"station_id": sid, "num_bikes_available": bikes,
+                "num_docks_available": 20 - bikes, "is_installed": True,
+                "is_renting": True, "is_returning": True,
+                "last_reported": last_reported or ts, "poll_ts": ts,
+                "feed_last_updated": ts}
+
+    poisoned = obs("2", 1, 7, last_reported=TARGET + timedelta(hours=1))
+    clean = obs("2", 6, 7)
+    existing = pd.read_parquet(raw / "2026-07-22.parquet")
+    pd.concat([existing, pd.DataFrame([poisoned, clean])]).to_parquet(
+        raw / "2026-07-22.parquet", index=False)
+
+    score_ledger(ledger, raw, NOW)
+    out = pd.read_csv(ledger / "outcomes" / "2026-07-22.csv",
+                      dtype={"station_id": str})
+    s2 = out[out["station_id"] == "2"].iloc[0]
+    assert s2["status"] == "SCORED", (
+        "a future-clocked nearest poll must not hide the eligible poll "
+        "sitting 6 minutes from the target")
+    assert s2["y"] == 1
+
+
 def test_rescoring_is_a_noop(tmp_path):
     ledger, raw = setup_fixture(tmp_path)
     score_ledger(ledger, raw, NOW)

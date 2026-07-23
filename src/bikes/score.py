@@ -57,9 +57,17 @@ def score_ledger(ledger_dir: Path, raw_dir: Path, now) -> dict:
                 obs = obs.assign(dist=(obs["poll_ts"] - r["target_ts"]).abs())
                 obs = obs.sort_values("dist")
                 for _, o in obs.iterrows():
+                    # Sorted by distance, so only the TOLERANCE clause is
+                    # monotonic: once a poll falls outside the window, all
+                    # later ones do too. The future-clock clause is not -
+                    # a poisoned last_reported on the nearest poll must be
+                    # skipped, not allowed to end the scan and record a
+                    # false UNSCOREABLE_GAP over an eligible neighbour.
+                    if abs(o["poll_ts"] - r["target_ts"]) > TOLERANCE:
+                        break
                     if not eligible_observation(r["target_ts"], o["poll_ts"],
                                                 o["last_reported"]):
-                        break  # sorted by distance: first ineligible ends it
+                        continue
                     if not (o["is_installed"] and o["is_renting"]):
                         status = "EXCLUDED_STATION"
                     else:
