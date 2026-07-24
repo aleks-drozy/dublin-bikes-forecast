@@ -1,6 +1,6 @@
 {
  "scored_days": 1,
  "required_days": 28,
- "evaluated_from": "long horizon, day-clustered bootstrap, seed 20260721",
+ "evaluated_from": "long horizon only, day-clustered bootstrap, seed 20260721",
  "status": "PENDING"
 }

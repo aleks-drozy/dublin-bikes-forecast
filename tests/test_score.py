@@ -3,7 +3,7 @@ from datetime import datetime, timedelta, timezone
 
 import pandas as pd
 
-from bikes.score import score_ledger, write_summary
+from bikes.score import evaluate_gate, score_ledger, write_summary
 
 UTC = timezone.utc
 TARGET = datetime(2026, 7, 22, 7, 30, tzinfo=UTC)
@@ -111,6 +111,19 @@ def test_rescoring_is_a_noop(tmp_path):
 
 def test_summary_math(tmp_path):
     ledger, raw = setup_fixture(tmp_path)
+    # Add a long-horizon forecast at the same target as the short-horizon
+    # one, so this fixture has a genuine long-horizon SCORED row (matching
+    # normal operation, where every target gets both a short and a long
+    # forecast — spec: "every target therefore gets exactly two forecasts").
+    long_row = {"issued_at_utc": (TARGET - timedelta(hours=10)).isoformat(),
+                "window": "morning", "horizon": "long",
+                "target_ts_utc": TARGET.isoformat(), "station_id": "1",
+                "event": "bike", "p_model": 0.75, "p_clim": 0.9,
+                "p_pers": 1.0, "model_version": "v1"}
+    fc = pd.read_csv(ledger / "forecasts" / "2026-07-22.csv")
+    pd.concat([fc, pd.DataFrame([long_row])], ignore_index=True).to_csv(
+        ledger / "forecasts" / "2026-07-22.csv", index=False)
+
     score_ledger(ledger, raw, NOW)
     write_summary(ledger)
     s = json.loads((ledger / "summary.json").read_text(encoding="utf-8"))
@@ -118,5 +131,27 @@ def test_summary_math(tmp_path):
                       if g["event"] == "bike" and g["horizon"] == "short")
     # scored bike rows: station 1 only (p=0.8, y=0) -> brier 0.64
     assert abs(bike_short["brier_model"] - 0.64) < 1e-9
-    assert s["status_counts"]["SCORED"] == 2
+    assert s["status_counts"]["SCORED"] == 3
+    # scored_days counts LONG-horizon scored dates only (amendment
+    # 2026-07-24): this date has one, so it counts.
     assert s["scored_days"] == 1
+
+
+def test_scored_days_excludes_a_short_only_date(tmp_path):
+    # setup_fixture issues short-horizon forecasts only. Even though two
+    # rows score SCORED on 2026-07-22, no LONG-horizon target scored that
+    # date, so it must not count toward the 28-day gate (amendment
+    # 2026-07-24, docs/specs/2026-07-24-gate-clarification-amendment.md):
+    # a date's short horizon scoring contributes zero evidence to the
+    # long-horizon BSS/CI test the gate actually evaluates.
+    ledger, raw = setup_fixture(tmp_path)
+    score_ledger(ledger, raw, NOW)
+    write_summary(ledger)
+    s = json.loads((ledger / "summary.json").read_text(encoding="utf-8"))
+    assert s["status_counts"]["SCORED"] == 2, "sanity: rows did score"
+    assert s["scored_days"] == 0
+
+    evaluate_gate(ledger)
+    gate = json.loads((ledger / "gate.json").read_text(encoding="utf-8"))
+    assert gate["scored_days"] == 0
+    assert gate["status"] == "PENDING"

@@ -114,12 +114,18 @@ def write_summary(ledger_dir: Path) -> None:
             "reliability": reliability_bins(g["p_model"].values, y)
             .to_dict(orient="records"),
         })
+    long_scored = scored[scored["horizon"] == "long"]
     summary = {
         "groups": groups,
         "status_counts": outcomes["status"].value_counts().to_dict(),
-        "scored_days": int(scored["target_ts_utc"].str[:10].nunique()),
-        "gate": "28 scored days; long-horizon BSS>0 vs both baselines, "
-                "day-clustered bootstrap 95% CI excluding 0 (pre-registered)",
+        # Gate-relevant count: distinct dates with >=1 SCORED long-horizon
+        # target. A date where only the short horizon scored contributes no
+        # evidence to the verdict test below and must not count toward it
+        # (amendment 2026-07-24, docs/specs/2026-07-24-gate-clarification-amendment.md).
+        "scored_days": int(long_scored["target_ts_utc"].str[:10].nunique()),
+        "gate": "28 scored days at the long horizon; long-horizon BSS>0 vs "
+                "both baselines, day-clustered bootstrap 95% CI excluding 0 "
+                "(pre-registered, clarified 2026-07-24)",
     }
     (ledger_dir / "summary.json").write_text(json.dumps(summary, indent=1),
                                              encoding="utf-8")
@@ -139,22 +145,28 @@ def _scored_rows(ledger_dir: Path) -> pd.DataFrame:
 
 
 def evaluate_gate(ledger_dir: Path) -> None:
-    """Pre-registered live gate (P1 spec) — this code ships before outcomes.
+    """Pre-registered live gate (P1 spec, clarified 2026-07-24) — this code
+    ships before outcomes.
 
-    PENDING until 28 scored days; then, per event at the LONG horizon:
-    BSS > 0 vs BOTH baselines with day-clustered bootstrap 95% CI excluding 0.
+    PENDING until 28 scored days AT THE LONG HORIZON (not necessarily
+    consecutive — see docs/specs/2026-07-24-gate-clarification-amendment.md);
+    then, per event: BSS > 0 vs BOTH baselines with day-clustered bootstrap
+    95% CI excluding 0. A date with only a scored short-horizon target
+    contributes no long-horizon evidence and does not count toward the 28.
     """
     scored = _scored_rows(ledger_dir)
-    days = int(scored["target_ts_utc"].str[:10].nunique()) if not scored.empty else 0
+    long_rows = scored[scored["horizon"] == "long"] if not scored.empty \
+        else scored
+    days = int(long_rows["target_ts_utc"].str[:10].nunique()) \
+        if not long_rows.empty else 0
     gate: dict = {"scored_days": days, "required_days": REQUIRED_DAYS,
-                  "evaluated_from": "long horizon, day-clustered bootstrap, "
-                                    "seed 20260721"}
+                  "evaluated_from": "long horizon only, day-clustered "
+                                    "bootstrap, seed 20260721"}
     if days < REQUIRED_DAYS:
         gate["status"] = "PENDING"
     else:
         detail = {}
         passed = True
-        long_rows = scored[scored["horizon"] == "long"]
         for event, g in long_rows.groupby("event"):
             y = g["y"].astype(float).values
             dates = g["target_ts_utc"].str[:10]

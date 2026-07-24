@@ -71,6 +71,15 @@ The ordering is checkable in this repository's history:
 The gate was written 37 minutes before the first row of data existed, and about
 seven hours before any model did.
 
+**Amendment, 2026-07-24** (committed at 1 of 28 scored days):
+[`docs/specs/2026-07-24-gate-clarification-amendment.md`](docs/specs/2026-07-24-gate-clarification-amendment.md)
+clarifies that "scored days" means distinct dates, not a consecutive run;
+fixes a bug where a date could count toward the gate on a scored
+short-horizon target alone, with no long-horizon evidence; and rules that
+day 1's evening forecast — issued with an atypical 7.4 h lead during
+startup — counts, because the model scores on the true lead time
+(`horizon_min`), not a fixed per-bucket value.
+
 ## Honesty rules
 
 - Forecasts enter the ledger committed **before** target time. Git timestamps are

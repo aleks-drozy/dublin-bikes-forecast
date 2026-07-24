@@ -34,12 +34,15 @@ def synth_ledger(tmp_path, p_model_fn, n_days=28):
 
 
 def test_gate_pending_before_28_days(tmp_path):
+    # setup_fixture's forecasts are all short-horizon (see test_score.py),
+    # and only long-horizon scored dates count toward the gate (amendment
+    # 2026-07-24) -- so scored_days is 0 here despite two SCORED rows.
     ledger, raw = setup_fixture(tmp_path)
     score_ledger(ledger, raw, NOW)
     evaluate_gate(ledger)
     gate = json.loads((ledger / "gate.json").read_text(encoding="utf-8"))
     assert gate["status"] == "PENDING"
-    assert gate["scored_days"] == 1 and gate["required_days"] == 28
+    assert gate["scored_days"] == 0 and gate["required_days"] == 28
 
 
 def test_gate_pass_with_skill(tmp_path):
