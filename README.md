@@ -14,18 +14,18 @@ before any data was collected.
 
 | | |
 |---|---|
-| Ingestion | **Live** — 10-minute GBFS polls, committed to `data/raw/` |
+| Ingestion | **Paused** since 2026-07-23 ~22:20 UTC (Oracle Cloud VM outage; appeal filed, no SLA). Was 10-minute GBFS polls to `data/raw/`; most recent real poll `aff0998`. |
 | Model | **v1, frozen** 2026-07-21 (`models/v1/manifest.json`) |
-| Live ledger | **Issuing** — first forecast 2026-07-21 22:02 UTC |
+| Live ledger | **Paused** since 2026-07-23 ~22:20 UTC. First forecast issued 2026-07-21 22:02 UTC. |
 | Scored days | **1 of 28** (first scoring run 2026-07-22 23:45 UTC, on schedule) |
-| Verdict | **PENDING** — earliest possible ~2026-08-19 |
+| Verdict | **PENDING**: the ~2026-08-19 estimate assumed unbroken collection from day 1, which broke on day 3; on hold pending the outage's resolution |
 
-One scored day exists and 27 more are needed before anything is claimed —
+One scored day exists and 27 more are needed before anything is claimed:
 single-day skill numbers are noise by design, so none are quoted here; the
 scoreboard renders the live ledger directly. Day 1 is also honestly
 incomplete: the 228 targets issued for the 2026-07-22 morning window are
-all recorded `UNSCOREABLE_GAP` — the first-night poll outage left no
-observation inside the ±10-minute eligibility window — and they are
+all recorded `UNSCOREABLE_GAP` (the first-night poll outage left no
+observation inside the ±10-minute eligibility window), and they are
 published as such rather than quietly dropped.
 
 ## What the offline validation found
@@ -50,13 +50,13 @@ eight cases:
 Full report and all four reliability curves: [`reports/p2/REPORT.md`](reports/p2/REPORT.md).
 
 **This is not the claim.** Offline skill on archive data is what earned the model
-a live deployment — nothing more. The only result that counts is the live one,
+a live deployment. Nothing more. The only result that counts is the live one,
 scored on forecasts issued before the fact, and that verdict is still PENDING.
 
 ## Pre-registration
 
-The verdict gate — Brier skill vs climatology **and** persistence, day-clustered
-bootstrap 95% CI excluding zero, 28 live days — is fixed in
+The verdict gate (Brier skill vs climatology **and** persistence, day-clustered
+bootstrap 95% CI excluding zero, 28 live days) is fixed in
 [`docs/specs/2026-07-21-forecast-preregistration.md`](docs/specs/2026-07-21-forecast-preregistration.md).
 
 The ordering is checkable in this repository's history:
@@ -76,8 +76,8 @@ seven hours before any model did.
 clarifies that "scored days" means distinct dates, not a consecutive run;
 fixes a bug where a date could count toward the gate on a scored
 short-horizon target alone, with no long-horizon evidence; and rules that
-day 1's evening forecast — issued with an atypical 7.4 h lead during
-startup — counts, because the model scores on the true lead time
+day 1's evening forecast (issued with an atypical 7.4 h lead during
+startup) counts, because the model scores on the true lead time
 (`horizon_min`), not a fixed per-bucket value.
 
 ## Honesty rules
@@ -94,12 +94,12 @@ startup — counts, because the model scores on the true lead time
 
 Everything the scoreboard displays is read from files in this repository:
 
-- `ledger/forecasts/YYYY-MM-DD.csv` — every issued forecast, with `p_model`,
+- `ledger/forecasts/YYYY-MM-DD.csv`: every issued forecast, with `p_model`,
   `p_clim`, `p_pers` and the issue timestamp
-- `ledger/outcomes/YYYY-MM-DD.csv` — the scored outcome, or the reason it was not
+- `ledger/outcomes/YYYY-MM-DD.csv`: the scored outcome, or the reason it was not
   scoreable
-- `ledger/gate.json` — scored-day count and gate status
-- `models/v1/manifest.json` — training window, seed, feature list, code commit
+- `ledger/gate.json`: scored-day count and gate status
+- `models/v1/manifest.json`: training window, seed, feature list, code commit
 
 ## Development
 
@@ -109,7 +109,7 @@ python -m venv .venv
 .venv/Scripts/python -m pytest
 ```
 
-68 tests, all network-free — fetching is injected everywhere.
+68 tests, all network-free: fetching is injected everywhere.
 
 Live operation runs from a small always-on VM (`ops/RUNBOOK.md`): hourly
 Dublin-hour-gated issuance, nightly scoring at 23:45 UTC, both pushing to this
@@ -117,4 +117,4 @@ repository under a shared lock.
 
 ## Licence
 
-MIT — see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
