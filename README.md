@@ -1,28 +1,35 @@
 # Dublin Bikes Forecast
 
+> **Status: offline since 2026-07-23.** This service ran from 2026-07-21 to
+> 2026-07-23 and stopped because the Oracle Cloud account hosting it was
+> terminated in July 2026. The last real data is the poll of 2026-07-23
+> 22:20 UTC; the last forecasts were issued 2026-07-23 15:05 UTC. One day of
+> the 28 the gate required was scored, so no verdict was reached. The ledger,
+> the code and the scoreboard page are kept as a frozen record of what ran.
+
 Publicly scored probability forecasts for dublinbikes availability at commute
 times: **P(at least one bike)** and **P(at least one free dock)** per station at
 08:30 and 17:30 (Europe/Dublin), at two horizons (~90 min and overnight).
 
-Every forecast is written to an append-only git ledger **before its target time
-exists**, then scored against reality under a gate that was pre-registered
+Every forecast was written to an append-only git ledger **before its target time
+existed**, then scored against reality under a gate that was pre-registered
 before any data was collected.
 
-**▶ Live scoreboard: [aleks-drozy.github.io/dublin-bikes-forecast](https://aleks-drozy.github.io/dublin-bikes-forecast/)**
+**▶ Scoreboard (frozen record, service offline): [aleks-drozy.github.io/dublin-bikes-forecast](https://aleks-drozy.github.io/dublin-bikes-forecast/)**
 
 ## Status
 
 | | |
 |---|---|
-| Ingestion | **Paused** since 2026-07-23 ~22:20 UTC (Oracle Cloud VM outage; appeal filed, no SLA). Was 10-minute GBFS polls to `data/raw/`; most recent real poll `aff0998`. |
+| Ingestion | **Stopped** 2026-07-23 ~22:20 UTC (the Oracle Cloud account hosting the VM was terminated in July 2026). Was 10-minute GBFS polls to `data/raw/`; most recent real poll `aff0998`. |
 | Model | **v1, frozen** 2026-07-21 (`models/v1/manifest.json`) |
-| Live ledger | **Paused** since 2026-07-23 ~22:20 UTC. First forecast issued 2026-07-21 22:02 UTC. |
+| Ledger | **Stopped** 2026-07-23 ~22:20 UTC. First forecast issued 2026-07-21 22:02 UTC, last issued 2026-07-23 15:05 UTC. |
 | Scored days | **1 of 28** (first scoring run 2026-07-22 23:45 UTC, on schedule) |
-| Verdict | **PENDING**: the ~2026-08-19 estimate assumed unbroken collection from day 1, which broke on day 3; on hold pending the outage's resolution |
+| Verdict | **None reached**: the gate needed 28 scored days and collection stopped on day 3, with 1 scored (`ledger/gate.json` still reads `PENDING`) |
 
-One scored day exists and 27 more are needed before anything is claimed:
+One scored day exists and the gate needed 28, so nothing is claimed:
 single-day skill numbers are noise by design, so none are quoted here; the
-scoreboard renders the live ledger directly. Day 1 is also honestly
+scoreboard renders the ledger directly. Day 1 is also honestly
 incomplete: the 228 targets issued for the 2026-07-22 morning window are
 all recorded `UNSCOREABLE_GAP` (the first-night poll outage left no
 observation inside the ±10-minute eligibility window), and they are
@@ -51,7 +58,8 @@ Full report and all four reliability curves: [`reports/p2/REPORT.md`](reports/p2
 
 **This is not the claim.** Offline skill on archive data is what earned the model
 a live deployment. Nothing more. The only result that counts is the live one,
-scored on forecasts issued before the fact, and that verdict is still PENDING.
+scored on forecasts issued before the fact, and the service stopped before
+that verdict was reached.
 
 ## Pre-registration
 
@@ -111,7 +119,7 @@ python -m venv .venv
 
 68 tests, all network-free: fetching is injected everywhere.
 
-Live operation runs from a small always-on VM (`ops/RUNBOOK.md`): hourly
+Live operation ran from a small always-on VM (`ops/RUNBOOK.md`): hourly
 Dublin-hour-gated issuance, nightly scoring at 23:45 UTC, both pushing to this
 repository under a shared lock.
 
