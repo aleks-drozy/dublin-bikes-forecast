@@ -68,6 +68,10 @@ h2 .no{color:var(--cobalt)}
 /* verdict notice */
 #gate{border:1.5px solid var(--rule-strong);padding:1.1rem 1.25rem 1.25rem;
   margin-top:clamp(1.8rem,5vw,2.6rem);background:var(--paper)}
+.offline{border:1.5px solid var(--warn);border-left-width:6px;
+  padding:.85rem 1.1rem;margin:0 0 clamp(1.4rem,4vw,2rem);
+  background:var(--paper-2);font-size:.95rem;line-height:1.5}
+.offline strong{color:var(--warn)}
 #gate .status{font:700 clamp(1.05rem,3vw,1.35rem)/1.3 var(--mono);
   letter-spacing:.02em}
 #gate.pending .status{color:var(--cobalt)}
@@ -159,20 +163,27 @@ footer{margin-top:clamp(3rem,7vw,4.5rem)}
 </head>
 <body>
 <main>
+<aside class="offline" role="note">
+  <strong>This service is offline.</strong> It ran from 21 July 2026 to
+  23 July 2026 and stopped because the Oracle Cloud account hosting it was
+  terminated in July 2026. The last real data is the poll of 23 July 2026,
+  22:20 UTC. One day of the 28 the gate required was scored, so no verdict
+  was reached. Everything below is the frozen record of those days.
+</aside>
 <header>
   <p class="overline">A self-scoring public forecast · Dublin</p>
   <h1>Dublin Bikes Forecast</h1>
   <div class="rules" aria-hidden="true"></div>
   <div class="masthead-meta">
     <span>Forecasts for 08:30 &amp; 17:30, Europe/Dublin</span>
-    <span>Live since 21 July 2026</span>
+    <span>Ran 21 to 23 July 2026</span>
     <span id="updated">ledger loading…</span>
     <a href="https://github.com/aleks-drozy/dublin-bikes-forecast">source ↗</a>
   </div>
   <p class="prose" style="margin-top:1.3rem">Twice a day, a frozen model
-  publishes the probability that each Dublin Bikes station will have a bike,
-  and a free dock, at the next commute window. Every forecast is committed to
-  a public git ledger <em>before its target time exists</em>, then scored
+  published the probability that each Dublin Bikes station would have a bike,
+  and a free dock, at the next commute window. Every forecast was committed to
+  a public git ledger <em>before its target time existed</em>, then scored
   against what actually happened. The track record cannot be edited,
   selected, or quietly restarted; the git history would show it.</p>
 </header>
@@ -196,21 +207,21 @@ footer{margin-top:clamp(3rem,7vw,4.5rem)}
     placeholder="Type a station — Smithfield North, Dame Street…"
     autocomplete="off">
   <datalist id="stations"></datalist>
-  <div id="station-result"><p class="note" id="latest-note">Loading the live
+  <div id="station-result"><p class="note" id="latest-note">Loading the last
   forecast feed…</p></div>
 </section>
 
 <section>
-  <h2><span class="no">§2</span> How it works</h2>
+  <h2><span class="no">§2</span> How it worked</h2>
   <div class="how">
-    <div><b><i>01</i>POLL</b><p>A cron job records every station's state
+    <div><b><i>01</i>POLL</b><p>A cron job recorded every station's state
       each 10 minutes from the public GBFS feed.</p></div>
     <div><b><i>02</i>FORECAST</b><p>At 07:00 and 16:00 Dublin time, the
-      frozen model turns current state, trend, calendar and weather into
+      frozen model turned current state, trend, calendar and weather into
       probabilities.</p></div>
-    <div><b><i>03</i>COMMIT</b><p>Forecasts are appended to the ledger and
+    <div><b><i>03</i>COMMIT</b><p>Forecasts were appended to the ledger and
       pushed. The git timestamp is the before-the-fact proof.</p></div>
-    <div><b><i>04</i>SCORE</b><p>Nightly, matured forecasts meet reality.
+    <div><b><i>04</i>SCORE</b><p>Nightly, matured forecasts met reality.
       Gaps and excluded stations are counted, never hidden.</p></div>
   </div>
 </section>
@@ -274,7 +285,7 @@ j("ledger/gate.json").then(g=>{
   const el=$("#gate"),s=$("#gate .status");
   ticks(Math.min(g.scored_days,g.required_days),g.required_days);
   if(g.status==="PENDING"){
-    s.textContent=`VERDICT: PENDING — DAY ${g.scored_days} OF ${g.required_days}`;
+    s.textContent=`NO VERDICT: STOPPED AT DAY ${g.scored_days} OF ${g.required_days}`;
   }else{
     el.className=g.status.toLowerCase();
     s.textContent="VERDICT: "+g.status.replace("_"," ");
@@ -286,15 +297,15 @@ j("ledger/gate.json").then(g=>{
 let LATEST=null;
 j("ledger/latest.json").then(d=>{
   LATEST=d;
-  $("#updated").textContent="feed updated "+dub(d.generated_at_utc,
+  $("#updated").textContent="feed last updated "+dub(d.generated_at_utc,
     {day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
   const names=[...new Set(d.forecasts.map(f=>f.name))].sort();
   $("#stations").innerHTML=names.map(n=>`<option value="${n}">`).join("");
   $("#latest-note").textContent=
-    `Live forecasts for ${names.length} stations. Times shown in Dublin time.`;
+    `The last forecasts issued, for ${names.length} stations. Times shown in Dublin time.`;
 }).catch(()=>{
   $("#updated").textContent="feed pending";
-  $("#latest-note").textContent="No live feed yet — the next issuance run publishes it.";
+  $("#latest-note").textContent="The forecast feed could not be loaded.";
 });
 
 $("#q").addEventListener("input",e=>{
